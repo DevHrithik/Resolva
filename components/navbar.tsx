@@ -1,4 +1,4 @@
-import { Github, Star } from "lucide-react";
+import { Github } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -19,11 +19,7 @@ const Navbar = () => {
       <div className="ml-[5%] text-[.8rem] font-semibold flex items-center gap-8 rounded-sm px-5 py-2 text-[#ffffff]">
         {NAVLIST.map((item, index) => {
           return (
-            <Link
-              className=""
-              key={index}
-              href={item.path}
-            >
+            <Link className="" key={index} href={item.path}>
               {item.name}
             </Link>
           );
