@@ -58,7 +58,7 @@ export default function Component() {
               </CardContent>
             </Card>
           </div>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 ">
+          <div className="md:grid flex flex-col gap-4 md:grid-cols-2 lg:grid-cols-7 ">
             <Card className="col-span-4 bg-black border-zinc-800 text-white ">
               <CardHeader>
                 <CardTitle>Recent Projects</CardTitle>
@@ -85,7 +85,7 @@ export default function Component() {
                 </ScrollArea>
               </CardContent>
             </Card>
-            <Card className="col-span-3 bg-black border-zinc-800 text-white">
+            <Card className="md:col-span-3 bg-black border-zinc-800 text-white ">
               <CardHeader>
                 <CardTitle>Active Bounties</CardTitle>
               </CardHeader>

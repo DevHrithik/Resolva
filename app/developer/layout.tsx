@@ -5,20 +5,14 @@ import {
   Github,
   Layout,
   List,
+  Menu,
   Search,
   Star,
   Wallet
 } from "lucide-react";
 import Link from "next/link";
 import { Bell, Settings } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { SignedIn, UserButton } from "@clerk/nextjs";
@@ -88,7 +82,15 @@ export default function RootLayout({
         </div>
       </div>
       <div className="flex-1 h-screen flex flex-col">
-        <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b border-[#ffffff20] bg-black px-6">
+        <header className="flex h-14 lg:h-[60px] py-4 items-center gap-4 border-b border-[#ffffff20] bg-black px-6">
+          <Button
+            className="rounded-full hover:bg-zinc-800 border border-zinc-800 w-8 h-8 bg-black md:hidden flex"
+            size="icon"
+            variant="ghost"
+          >
+            <Menu className="h-4 w-4 text-white" />
+            <span className="sr-only">Mobile Menu</span>
+          </Button>
           <div className="w-full flex-1">
             <form>
               <div className="relative">
