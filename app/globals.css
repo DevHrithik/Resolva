@@ -3,10 +3,9 @@
 @tailwind utilities;
 
 body {
-  /* @apply bg-gradient-to-t from-[#0C1222] to-[#0D253D];  */
-  /* @apply bg-gradient-to-b from-[#0C1222] to-[#102f4d]; */
+  @apply bg-gradient-to-t from-[#0C1222] to-[#0D253D]; 
   font-family: Arial, Helvetica, sans-serif;
-  min-height: 100vh; /* Ensures full viewport coverage */
+  min-height: 100vh; 
   background-color: var(--background);
   color: white;
 }
@@ -81,4 +80,10 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

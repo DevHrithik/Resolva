@@ -15,8 +15,10 @@ const REPO = "https://github.com/DevHrithik/Resolva.git";
 const Navbar = () => {
   return (
     <div className="fixed top-0 w-full backdrop-blur-[5px] backdrop-opacity-100 border-[#ffffff17] border-b text-white flex items-center justify-between px-[3%] py-3 ">
-      <div className="text-2xl font-semibold">{LOGO}</div>
-      <div className="ml-[5%] text-[.8rem] font-semibold flex items-center gap-8 rounded-sm px-5 py-2 text-[#ffffff]">
+      <div className="text-2xl font-semibold">
+        {LOGO}
+      </div>
+      <div className="hidden md:flex ml-[5%] text-[.8rem] font-semibold items-center gap-8 rounded-sm px-5 py-2 text-[#ffffff]">
         {NAVLIST.map((item, index) => {
           return (
             <Link className="" key={index} href={item.path}>
@@ -35,7 +37,7 @@ const Navbar = () => {
           className="flex items-center gap-1 border border-[#ffffff29] rounded-md px-3 py-2"
         >
           <Github className="h-4 w-4 " />
-          14.3k
+          69.3k
         </Link>
       </div>
     </div>
