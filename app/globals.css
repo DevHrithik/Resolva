@@ -15,7 +15,11 @@
 }
 
 body {
+  /* @apply bg-gradient-to-t from-[#0C1222] to-[#0D253D];  */
+  @apply bg-gradient-to-t from-[#0C1222] to-[#102f4d]; 
   color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh; /* Ensures full viewport coverage */
+  background-color: var(--background); /* Fallback for non-gradient-supporting browsers */
 }
+
