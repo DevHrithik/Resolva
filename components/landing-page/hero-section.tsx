@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "../ui/button";
 const Herosection = () => {
   return (
-    <div className="h-[55vh] md:h-screen flex flex-col md:flex-row py-[10%] justify-between px-5 md:px-[5%]">
+    <div className="h-[55vh] md:h-[90vh] flex flex-col md:flex-row py-[30%] justify-between items-center ">
       <div className="flex flex-col gap-4 text-center md:text-left">
         <div className="text-[40px] md:text-[80px] font-bold  md:leading-tight">
           <h1>Solve issues</h1>
@@ -11,7 +11,7 @@ const Herosection = () => {
 
         <div className="w-full md:w-[400px]">
           <span className="font-medium text-[20px] md:text-[20px] opacity-60">
-         Solve real-world problems and get rewarded for your contributions.
+            Solve real-world problems and get rewarded for your contributions.
           </span>
         </div>
 

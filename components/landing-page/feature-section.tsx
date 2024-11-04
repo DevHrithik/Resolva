@@ -23,7 +23,7 @@ const Feature = () => {
       content:
         "Connect with project maintainers and other developers in the community.",
     },
-  ]
+  ];
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 ">
       <div className="container px-4 md:px-6 mx-auto">
@@ -31,21 +31,22 @@ const Feature = () => {
           Why Choose Resolva?
         </h2>
         <div className="grid gap-8 lg:grid-cols-3">
-          {
-            features.map((feature, index) => (
-              <Card key={index} className="bg-gray-800 border-gray-700 hover:bg-gray-700 transition-colors duration-300">
-                <CardHeader>
-                  <feature.icon className="h-12 w-12 mb-4 text-blue-400" />
-                  <CardTitle className="text-xl font-semibold text-white">
-                    {feature.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-300">{feature.content}</p>
-                </CardContent>
-              </Card>
-            ))}
-        
+          {features.map((feature, index) => (
+            <Card
+              key={index}
+              className="bg-transparent  transition-colors duration-300"
+            >
+              <CardHeader>
+                <feature.icon className="h-12 w-12 mb-4 text-blue-400" />
+                <CardTitle className="text-xl font-semibold text-white">
+                  {feature.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300">{feature.content}</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </section>
