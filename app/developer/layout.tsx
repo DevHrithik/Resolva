@@ -18,6 +18,39 @@ import { Separator } from "@/components/ui/separator";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
+const NAVLIST = [
+  {
+    name: "Dashboard",
+    href: "/",
+    icon: Layout
+  },
+  {
+    name: "Explore",
+    href: "/explore",
+    icon: Search
+  },
+  {
+    name: "Billing",
+    href: "/billing",
+    icon: Wallet
+  },
+  {
+    name: "Watchlist",
+    href: "/watchlist",
+    icon: Star
+  },
+  {
+    name: "Works",
+    href: "/wroks",
+    icon: GitMerge
+  },
+  {
+    name: "Leaderboard",
+    href: "/leaderboard",
+    icon: List
+  }
+];
+
 export default function RootLayout({
   children
 }: {
@@ -35,48 +68,16 @@ export default function RootLayout({
           </div>
           <div className="flex-1">
             <nav className="grid items-start px-4 text-sm font-medium">
-              <Link
-                className="flex items-center gap-3 rounded-lg bg-zinc-900 px-3 py-2 text-white transition-all"
-                href="#"
-              >
-                <Layout className="h-4 w-4" />
-                Dashboard
-              </Link>
-              <Link
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white transition-all"
-                href="#"
-              >
-                <Search className="h-4 w-4" />
-                Explore
-              </Link>
-              <Link
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white transition-all"
-                href="#"
-              >
-                <Wallet className="h-4 w-4" />
-                Billing
-              </Link>
-              <Link
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white transition-all"
-                href="#"
-              >
-                <Star className="h-4 w-4" />
-                Watchlist
-              </Link>
-              <Link
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white transition-all"
-                href="#"
-              >
-                <GitMerge className="h-4 w-4" />
-                Works
-              </Link>
-              <Link
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white transition-all"
-                href="#"
-              >
-                <List className="h-4 w-4" />
-                Leaderboard
-              </Link>
+              {NAVLIST.map((item, index) =>
+                <Link
+                  key={index}
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white transition-all"
+                  href={item.href}
+                >
+                  <item.icon className="h-4 w-4" />
+                  {item.name}
+                </Link>
+              )}
             </nav>
           </div>
           <div className="mt-auto p-4">Subscription section</div>
@@ -100,10 +101,10 @@ export default function RootLayout({
               className="bg-black text-white border-r border-[#ffffff20] max-w-fit"
             >
               <div className="flex h-full flex-col gap-2">
-                <div className="flex h-[60px] items-center">
+                <div className="flex h-[60px] items-center justify-center mr-[10%]">
                   <Link
                     className="flex items-center gap-2 font-semibold"
-                    href="#"
+                    href="/developer"
                   >
                     <Github className="h-6 w-6 text-white" />
                     <span>Resolva</span>
@@ -111,48 +112,16 @@ export default function RootLayout({
                 </div>
                 <div className="flex-1">
                   <nav className="grid items-start text-sm font-medium">
-                    <Link
-                      className="px-3 flex items-center gap-3 rounded-lg bg-zinc-900 py-2 text-white transition-all"
-                      href="#"
-                    >
-                      <Layout className="h-4 w-4" />
-                      Dashboard
-                    </Link>
-                    <Link
-                      className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white transition-all"
-                      href="#"
-                    >
-                      <Search className="h-4 w-4" />
-                      Explore
-                    </Link>
-                    <Link
-                      className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white transition-all"
-                      href="#"
-                    >
-                      <Wallet className="h-4 w-4" />
-                      Billing
-                    </Link>
-                    <Link
-                      className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white transition-all"
-                      href="#"
-                    >
-                      <Star className="h-4 w-4" />
-                      Watchlist
-                    </Link>
-                    <Link
-                      className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white transition-all"
-                      href="#"
-                    >
-                      <GitMerge className="h-4 w-4" />
-                      Works
-                    </Link>
-                    <Link
-                      className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white transition-all"
-                      href="#"
-                    >
-                      <List className="h-4 w-4" />
-                      Leaderboard
-                    </Link>
+                    {NAVLIST.map((item, index) =>
+                      <Link
+                        key={index}
+                        className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white transition-all"
+                        href={item.href}
+                      >
+                        <item.icon className="h-4 w-4" />
+                        {item.name}
+                      </Link>
+                    )}
                   </nav>
                 </div>
                 <div className="mt-auto p-4">Subscription</div>
