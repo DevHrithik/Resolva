@@ -21,32 +21,32 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 const NAVLIST = [
   {
     name: "Dashboard",
-    href: "/",
+    href: "/developer",
     icon: Layout
   },
   {
     name: "Explore",
-    href: "/explore",
+    href: "/developer/explore",
     icon: Search
   },
   {
     name: "Billing",
-    href: "/billing",
+    href: "/developer/billing",
     icon: Wallet
   },
   {
     name: "Watchlist",
-    href: "/watchlist",
+    href: "/developer/watchlist",
     icon: Star
   },
   {
     name: "Works",
-    href: "/wroks",
+    href: "/developer/wroks",
     icon: GitMerge
   },
   {
     name: "Leaderboard",
-    href: "/leaderboard",
+    href: "/developer/leaderboard",
     icon: List
   }
 ];
