@@ -27,7 +27,7 @@ const Feature = () => {
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 ">
       <div className="container px-4 md:px-6 mx-auto">
-        <h2 className="text-3xl font-bold tracking-tighter  text-center mb-12 text-white">
+        <h2 className="text-xl md:text-3xl font-bold tracking-tighter  text-center mb-12 text-white">
           Why Choose Resolva?
         </h2>
         <div className="grid gap-8 lg:grid-cols-3">

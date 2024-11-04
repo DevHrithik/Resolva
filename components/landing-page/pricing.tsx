@@ -57,10 +57,10 @@ const Pricing = () => {
   return (
     <div className="px-4 py-8 md:py-12">
       <div className="mx-auto max-w-6xl">
-        <h2 className="text-center text-3xl font-bold text-white mb-12 md:text-4xl">
+        <h2 className="text-center text-xl md:text-3xl  font-bold text-white mb-12">
           Find a plan to power your finances
         </h2>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-3 relative -z-10">
           {pricingPlans.map((plan, index) => (
             <Card
               key={index}
