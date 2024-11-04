@@ -3,21 +3,20 @@ import { Button } from "../ui/button";
 const Herosection = () => {
   return (
     <div className="h-[55vh] md:h-screen flex flex-col md:flex-row py-[10%] justify-between px-5 md:px-[5%]">
-      <div className="flex flex-col gap-5 text-center md:text-left">
-        <div className="text-[40px] md:text-[75px] font-bold  md:leading-tight">
-          <h1>The web builder</h1>
-          <h1 className="-mt-4">for stunning sites.</h1>
+      <div className="flex flex-col gap-4 text-center md:text-left">
+        <div className="text-[40px] md:text-[80px] font-bold  md:leading-tight">
+          <h1>Solve issues</h1>
+          <h1 className="-mt-5">earn rewards.</h1>
         </div>
 
         <div className="w-full md:w-[400px]">
-          <span className="font-medium text-[18px] md:text-[20px] opacity-60">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Perspiciatis, aliquam?
+          <span className="font-medium text-[20px] md:text-[20px] opacity-60">
+         Solve real-world problems and get rewarded for your contributions.
           </span>
         </div>
 
         <div className="">
-          <Button className="bg-[#2f93e0] hover:bg-[#006AB9] text-[15px] font-medium">
+          <Button className="bg-[#2f93e0] hover:bg-[#006AB9] text-[16px] font-medium">
             Sign up for free
           </Button>
         </div>
