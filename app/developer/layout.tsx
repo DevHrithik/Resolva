@@ -10,6 +10,17 @@ import {
   Wallet
 } from "lucide-react";
 import Link from "next/link";
+import { Bell, Settings } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
 
 export default function RootLayout({
   children
@@ -18,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <div className="flex h-screen">
-      <div className="hidden border-r bg-black lg:block">
+      <div className="hidden border-r border-[#ffffff20] bg-black lg:block w-[15%]">
         <div className="flex h-full flex-col gap-2">
           <div className="flex h-[60px] items-center px-6">
             <Link className="flex items-center gap-2 font-semibold" href="#">
@@ -75,7 +86,59 @@ export default function RootLayout({
           <div className="mt-auto p-4">Subscription section</div>
         </div>
       </div>
-      {children}
+      <div className="flex-1 h-screen flex flex-col">
+        <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b border-[#ffffff20] bg-black px-6">
+          <div className="w-full flex-1">
+            <form>
+              <div className="relative">
+                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-zinc-500" />
+                <Input
+                  className="w-full bg-zinc-900 pl-8 border-zinc-800 focus-visible:ring-zinc-700 text-white"
+                  placeholder="Search projects..."
+                  type="search"
+                />
+              </div>
+            </form>
+          </div>
+          <Button
+            className="rounded-full hover:bg-zinc-800 border border-zinc-800 w-8 h-8 bg-black"
+            size="icon"
+            variant="ghost"
+          >
+            <Bell className="h-4 w-4 text-white" />
+            <span className="sr-only">Toggle notifications</span>
+          </Button>
+          <Button
+            className="rounded-full border border-zinc-800 hover:bg-zinc-900 w-8 h-8 bg-black"
+            size="icon"
+            variant="ghost"
+          >
+            <Settings className="h-4 w-4 text-white" />
+            <span className="sr-only">Toggle settings</span>
+          </Button>
+          <Separator orientation="vertical" className="h-6" />
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                className="rounded-full border border-zinc-800 w-8 h-8 p-0 bg-black"
+                size="icon"
+                variant="ghost"
+              >
+                <Avatar className="h-8 w-8">
+                  <AvatarImage alt="User avatar" src="/placeholder-user.jpg" />
+                  <AvatarFallback>JP</AvatarFallback>
+                </Avatar>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem>View Profile</DropdownMenuItem>
+              <DropdownMenuItem>Settings</DropdownMenuItem>
+              <DropdownMenuItem>Logout</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </header>
+        {children}
+      </div>
     </div>
   );
 }
