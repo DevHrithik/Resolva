@@ -34,7 +34,7 @@ const Feature = () => {
           {features.map((feature, index) => (
             <Card
               key={index}
-              className="bg-transparent  transition-colors duration-300"
+              className="bg-transparent"
             >
               <CardHeader>
                 <feature.icon className="h-12 w-12 mb-4 text-blue-400" />
