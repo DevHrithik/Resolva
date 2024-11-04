@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { SignedIn, UserButton } from "@clerk/nextjs";
 
 export default function RootLayout({
   children
@@ -34,7 +35,7 @@ export default function RootLayout({
           <div className="flex h-[60px] items-center px-6">
             <Link className="flex items-center gap-2 font-semibold" href="#">
               <Github className="h-6 w-6 text-white" />
-              <span>DevBounty</span>
+              <span>Resolva</span>
             </Link>
           </div>
           <div className="flex-1">
@@ -117,25 +118,9 @@ export default function RootLayout({
             <span className="sr-only">Toggle settings</span>
           </Button>
           <Separator orientation="vertical" className="h-6" />
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                className="rounded-full border border-zinc-800 w-8 h-8 p-0 bg-black"
-                size="icon"
-                variant="ghost"
-              >
-                <Avatar className="h-8 w-8">
-                  <AvatarImage alt="User avatar" src="/placeholder-user.jpg" />
-                  <AvatarFallback>JP</AvatarFallback>
-                </Avatar>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem>View Profile</DropdownMenuItem>
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </header>
         {children}
       </div>
