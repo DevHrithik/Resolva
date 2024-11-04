@@ -41,7 +41,7 @@ const NAVLIST = [
   },
   {
     name: "Works",
-    href: "/developer/wroks",
+    href: "/developer/works",
     icon: GitMerge
   },
   {
