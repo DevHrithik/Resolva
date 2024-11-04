@@ -14,7 +14,7 @@ const REPO = "https://github.com/DevHrithik/Resolva.git";
 
 const Navbar = () => {
   return (
-    <div className="text-white flex items-center justify-between px-[3%] py-4">
+    <div className="fixed top-0 w-full backdrop-blur-[5px] backdrop-opacity-100 border-[#ffffff17] border-b text-white flex items-center justify-between px-[3%] py-3 ">
       <div className="text-2xl font-semibold">{LOGO}</div>
       <div className="ml-[5%] text-[.8rem] font-semibold flex items-center gap-8 rounded-sm px-5 py-2 text-[#ffffff]">
         {NAVLIST.map((item, index) => {

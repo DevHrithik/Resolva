@@ -10,8 +10,8 @@ import Navbar from "@/components/navbar";
 export default function Home() {
   return (
     <>
-      <div className="bg-dark-to-light">
-        <Navbar />
+      <Navbar />
+      <div className="bg-dark-to-light pt-20">
         <Herosection />
         <Feature />
       </div>
