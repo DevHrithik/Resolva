@@ -55,7 +55,7 @@ const pricingPlans = [
 
 const Pricing = () => {
   return (
-    <div className="px-4 py-8 md:py-12">
+    <div className="px-4 py-8 md:py-12 h-[85vh]">
       <div className="mx-auto max-w-6xl">
         <h2 className="text-center text-xl md:text-3xl  font-bold text-white mb-12">
           Find a plan to power your finances

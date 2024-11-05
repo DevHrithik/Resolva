@@ -20,7 +20,7 @@ export default function Home() {
         <Herosection />
         <Feature />
 
-        <Working />
+        {/* <Working /> */}
         <Pricing />
         <Testimonial />
       </div>
