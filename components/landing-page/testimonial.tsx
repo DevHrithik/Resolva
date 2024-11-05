@@ -37,7 +37,7 @@ const testimonials: Testimonial[] = [
   },
   {
     name: "Santanu Dutta",
-    handle: "@richwebz",
+    handle: "@Santanu_Dutta",
     image: "/placeholder.svg?height=40&width=40",
     content:
       "I've been using Butter 2.0 for the last 3 cohorts of my course, How To Work Less, and I can't say enough about it - It blows Zoom out of the water for live sessions! My students constantly say how much more fun and engaging it makes the sessions!",
