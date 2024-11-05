@@ -14,7 +14,8 @@ const GlowingGridBackground = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [innerWidth]);
-  return <>
+  return (
+    <>
       <div
         className={`relative w-full ${
           innerWidth < 1024 ? "h-[300vh]" : "h-[150vh]"
@@ -195,7 +196,7 @@ const GlowingGridBackground = () => {
         )}
       </div>
     </>
- 
+  );
 };
 
 export default GlowingGridBackground;
