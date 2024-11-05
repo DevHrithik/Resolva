@@ -2,23 +2,11 @@
 
 import { useState } from "react";
 import {
-  AlertCircle,
   ChevronDown,
-  Code2,
-  DollarSign,
   Filter,
-  GitPullRequest,
   Search
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle
-} from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -33,7 +21,7 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
+import IssueCard from "@/components/developer/issue-card";
 
 const issues = [
   {
@@ -97,18 +85,6 @@ const issues = [
     status: "Open"
   }
 ];
-
-const difficultyColors = {
-  Easy: "bg-green-100 text-green-800",
-  Medium: "bg-yellow-100 text-yellow-800",
-  Hard: "bg-red-100 text-red-800"
-};
-
-const statusColors = {
-  Open: "bg-blue-100 text-blue-800",
-  "In Progress": "bg-purple-100 text-purple-800",
-  Completed: "bg-gray-100 text-gray-800"
-};
 
 export default function Component() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -220,65 +196,8 @@ export default function Component() {
           </Select>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredIssues.map(issue =>
-            <Card key={issue.id} className="flex flex-col">
-              <CardHeader>
-                <CardTitle className="flex items-start justify-between">
-                  <span className="text-lg font-semibold">
-                    {issue.title}
-                  </span>
-                  <Badge
-                    variant="outline"
-                    className={statusColors[issue.status]}
-                  >
-                    {issue.status}
-                  </Badge>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="flex-1">
-                <p className="text-sm text-gray-500 mb-2">
-                  {issue.project}
-                </p>
-                <p className="text-sm text-gray-700 mb-4">
-                  {issue.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {issue.techStack.map(tech =>
-                    <Badge key={tech} variant="secondary">
-                      {tech}
-                    </Badge>
-                  )}
-                </div>
-                <div className="flex items-center gap-4 text-sm">
-                  <span className="flex items-center">
-                    <AlertCircle className="mr-1 h-4 w-4" />
-                    <Badge
-                      variant="outline"
-                      className={difficultyColors[issue.difficulty]}
-                    >
-                      {issue.difficulty}
-                    </Badge>
-                  </span>
-                  <span className="flex items-center">
-                    <Code2 className="mr-1 h-4 w-4" />
-                    {issue.estimatedTime}
-                  </span>
-                </div>
-              </CardContent>
-              <Separator />
-              <CardFooter className="flex justify-between items-center pt-4">
-                <div className="flex items-center">
-                  <DollarSign className="mr-1 h-4 w-4 text-green-600" />
-                  <span className="font-semibold text-green-600">
-                    ${issue.bounty}
-                  </span>
-                </div>
-                <Button>
-                  <GitPullRequest className="mr-2 h-4 w-4" />
-                  Solve Issue
-                </Button>
-              </CardFooter>
-            </Card>
+          {Array.from({length:50}).fill("").map((issue, index) =>
+            <IssueCard key={index} issue={issue} />
           )}
         </div>
         {filteredIssues.length === 0 &&
@@ -287,8 +206,8 @@ export default function Component() {
               No issues found
             </h3>
             <p className="mt-1 text-gray-500">
-              Try adjusting your search or filters to find what you're looking
-              for.
+              Try adjusting your search or filters to find what you&apos;re
+              looking for.
             </p>
           </div>}
       </div>
