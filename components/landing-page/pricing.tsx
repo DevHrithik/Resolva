@@ -64,10 +64,14 @@ const Pricing = () => {
           {pricingPlans.map((plan, index) => (
             <Card
               key={index}
-              className={`relative ${plan.isComingSoon ? "border-slate-800" : "border-blue-500"} bg-slate-950`}
+              className={`relative ${
+                plan.isComingSoon ? "border-slate-800" : "border-blue-500"
+              } bg-slate-950`}
             >
               <CardHeader>
-                <h3 className="text-lg font-medium text-blue-400">{plan.title}</h3>
+                <h3 className="text-lg font-medium text-blue-400">
+                  {plan.title}
+                </h3>
                 <div className="flex items-baseline text-white">
                   <span className="text-3xl font-bold">${plan.price}</span>
                   <span className="text-slate-400 ml-1">/mo</span>
@@ -86,7 +90,11 @@ const Pricing = () => {
               </CardContent>
               <CardFooter>
                 <Button
-                  className={`w-full ${plan.isComingSoon ? "bg-slate-800 hover:bg-slate-700" : "bg-blue-600 hover:bg-blue-500"} text-white`}
+                  className={`w-full ${
+                    plan.isComingSoon
+                      ? "bg-slate-800 hover:bg-slate-700"
+                      : "bg-blue-600 hover:bg-blue-500"
+                  } text-white`}
                   variant={plan.isComingSoon ? "secondary" : "default"}
                 >
                   {plan.buttonText}

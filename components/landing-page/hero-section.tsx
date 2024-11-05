@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useRef } from "react";
 import { Button } from "../ui/button";
 import gsap from "gsap";
@@ -31,7 +32,7 @@ const Herosection = () => {
       >
         <div className="text-[40px] md:text-[80px] font-bold md:leading-tight">
           <h1>Solve issues</h1>
-          <h1 className="-mt-5">earn rewards.</h1>
+          <h1 className="-mt-8">earn rewards.</h1>
         </div>
 
         <div className="w-full md:w-[400px]">
@@ -42,7 +43,7 @@ const Herosection = () => {
 
         <div>
           <Button className="bg-[#2f93e0] hover:bg-[#006AB9] text-[16px] font-medium">
-            Sign up for free
+            Get Started
           </Button>
         </div>
       </div>

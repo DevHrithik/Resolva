@@ -53,10 +53,11 @@ const testimonials: Testimonial[] = [
 
 export default function Component() {
   return (
-    <div className="dark min-h-screen  text-foreground p-8">
-      <div className="container mx-auto">
+    <>
+    <div className="dark h-[60vh] md:h-screen  text-foreground  md:flex md:items-center">
+      <div className="mx-auto px-4">
         <div className="mb-12 text-center">
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="text-xl md:text-3xl font-bold mb-4">
             Loved by facilitators everywhere
           </h2>
           <p className="text-xl text-muted-foreground">
@@ -64,56 +65,64 @@ export default function Component() {
           </p>
         </div>
 
-        <Carousel
-          opts={{
-            align: "start",
-          }}
-          className="w-full "
-        >
-          <CarouselContent>
-            {testimonials.map((testimonial, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 ">
-                <motion.div
-                  whileHover={{ scale: 1 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 10 }}
-                >
-                  <Card className="h-full bg-[#020617]">
-                    <CardHeader className="flex flex-row items-center gap-4">
-                      <Avatar>
-                        <AvatarImage
-                          src={testimonial.image}
-                          alt={testimonial.name}
-                        />
-                        <AvatarFallback>{testimonial.name[0]}</AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <h3 className="font-semibold">{testimonial.name}</h3>
-                        {testimonial.handle && (
-                          <p className="text-sm text-muted-foreground">
-                            {testimonial.handle}
-                          </p>
-                        )}
-                        {testimonial.role && (
-                          <p className="text-sm text-muted-foreground">
-                            {testimonial.role}
-                          </p>
-                        )}
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground">
-                        {testimonial.content}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+        <div className="relative">
+          <Carousel
+            opts={{
+              align: "start",
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                    className="h-full"
+                  >
+                    <Card className="h-full bg-[#020617]">
+                      <CardHeader className="flex flex-row items-center gap-4">
+                        <Avatar>
+                          <AvatarImage
+                            src={testimonial.image}
+                            alt={testimonial.name}
+                          />
+                          <AvatarFallback>{testimonial.name[0]}</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <h3 className="font-semibold">{testimonial.name}</h3>
+                          {testimonial.handle && (
+                            <p className="text-sm text-muted-foreground">
+                              {testimonial.handle}
+                            </p>
+                          )}
+                          {testimonial.role && (
+                            <p className="text-sm text-muted-foreground">
+                              {testimonial.role}
+                            </p>
+                          )}
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-sm text-muted-foreground">
+                          {testimonial.content}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="relative -left-4 -right-4 top-1/2 flex -translate-y-1/2 justify-between">
+              <CarouselPrevious className="relative -translate-y-1/2 translate-x-0" />
+              <CarouselNext className="relative -translate-y-1/2 translate-x-0" />
+            </div>
+          </Carousel>
+        </div>
       </div>
     </div>
+
+   
+    </>
   );
 }

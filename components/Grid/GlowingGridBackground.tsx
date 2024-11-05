@@ -17,9 +17,7 @@ const GlowingGridBackground = () => {
   return (
     <>
       <div
-        className={`relative w-full ${
-          innerWidth < 1024 ? "h-[300vh]" : "h-[150vh]"
-        } overflow-hidden`}
+        className={`relative w-full h-full overflow-hidden`}
         style={{
           background: "linear-gradient(to right bottom, #000510, #001215)",
         }}
