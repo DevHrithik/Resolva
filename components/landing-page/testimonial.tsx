@@ -22,21 +22,21 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    name: "Axel Sooriah",
-    handle: "@axel_sooriah",
+    name: "Orrin Madari",
+    handle: "@Omadari",
     image: "/placeholder.svg?height=40&width=40",
     content:
       "Been early users of Butter and loved it since. It's a core part of our learning space for product managers to upskill on various craft skills. Excited to see what else the Butter has in store for us.",
   },
   {
-    name: "Jay Melone",
-    handle: "@jaymelone",
+    name: "Hrithik Lodu",
+    handle: "@Hrithik69",
     image: "/placeholder.svg?height=40&width=40",
     content:
       "Butter has gotten so good that it's completely integrated into how we operate. We rely on Butter for all of our internal conversations and strategy sessions. More so, Butter powers all of our client work and our training workshops.",
   },
   {
-    name: "Rich Webster",
+    name: "Santanu Dutta",
     handle: "@richwebz",
     image: "/placeholder.svg?height=40&width=40",
     content:
