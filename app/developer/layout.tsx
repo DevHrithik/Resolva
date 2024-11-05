@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   GitMerge,
   Github,
@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { usePathname } from "next/navigation";
 
 const NAVLIST = [
   {
@@ -56,6 +57,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const PATH = usePathname();
+
+  const getHeaderTitle = () => {
+    const currentPage = NAVLIST.find(item => item.href === PATH);
+    return currentPage ? currentPage.name : "Dashboard";
+  };
+
+  useEffect(() => {
+    console.log(PATH);
+  }, []);
+
   return (
     <div className="flex h-screen">
       <div className="hidden border-r border-[#ffffff20] bg-black lg:block w-[15%]">
@@ -71,7 +83,9 @@ export default function RootLayout({
               {NAVLIST.map((item, index) =>
                 <Link
                   key={index}
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white transition-all"
+                  className={`${item.href === PATH
+                    ? "text-white"
+                    : "text-zinc-400"} flex items-center gap-3 rounded-lg px-3 py-2 hover:text-white transition-all`}
                   href={item.href}
                 >
                   <item.icon className="h-4 w-4" />
@@ -131,12 +145,9 @@ export default function RootLayout({
           <div className="w-full flex-1">
             <form>
               <div className="relative">
-                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-zinc-500" />
-                <Input
-                  className="w-full bg-zinc-900 pl-8 border-zinc-800 focus-visible:ring-zinc-700 text-white"
-                  placeholder="Search projects..."
-                  type="search"
-                />
+                <h2 className="font-bold text-xl">
+                  {getHeaderTitle()}
+                </h2>
               </div>
             </form>
           </div>
