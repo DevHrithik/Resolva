@@ -3,18 +3,13 @@
 import { useState } from "react";
 import {
   AlertCircle,
-  ArrowUpDown,
-  Check,
   ChevronDown,
   Code2,
   DollarSign,
   Filter,
   GitPullRequest,
-  Search,
-  Star
+  Search
 } from "lucide-react";
-import Link from "next/link";
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -139,17 +134,14 @@ export default function Component() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="flex-1 overflow-y-auto bg-black py-8 scroll-none">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">
-          Explore Issues
-        </h1>
         <div className="flex flex-col md:flex-row gap-4 mb-8">
           <div className="flex-1">
             <div className="relative">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 " />
               <Input
-                className="pl-8"
+                className="pl-8 border border-[#ffffff28]"
                 placeholder="Search issues..."
                 type="search"
                 value={searchQuery}
@@ -159,7 +151,10 @@ export default function Component() {
           </div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="w-full md:w-auto">
+              <Button
+                variant="outline"
+                className="w-full md:w-auto bg-black border border-[#ffffff28] hover:bg-zinc-900 hover:border-transparent transition-all ease-linear duration-200 hover:text-white"
+              >
                 <Filter className="mr-2 h-4 w-4" />
                 Tech Stack
                 <ChevronDown className="ml-2 h-4 w-4" />
@@ -184,7 +179,10 @@ export default function Component() {
           </DropdownMenu>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="w-full md:w-auto">
+              <Button
+                variant="outline"
+                className="w-full md:w-auto bg-black border border-[#ffffff28] hover:bg-zinc-900 hover:border-transparent transition-all ease-linear duration-200 hover:text-white"
+              >
                 <Filter className="mr-2 h-4 w-4" />
                 Difficulty
                 <ChevronDown className="ml-2 h-4 w-4" />
