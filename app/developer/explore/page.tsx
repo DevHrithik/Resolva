@@ -1,11 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  ChevronDown,
-  Filter,
-  Search
-} from "lucide-react";
+import { ChevronDown, Filter, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -38,23 +34,23 @@ const issues = [
   },
   {
     id: 2,
-    title: "Optimize database queries for better performance",
-    project: "Data Analytics Dashboard",
+    title: "Design product page UI",
+    project: "E-commerce Platform",
     description:
-      "Improve the speed of data retrieval by optimizing SQL queries and implementing proper indexing.",
-    techStack: ["Python", "PostgreSQL", "SQLAlchemy"],
-    bounty: 750,
-    difficulty: "Hard",
-    estimatedTime: "1 week",
-    status: "Open"
+      "Design a responsive and visually appealing product page UI with product details, images, and add to cart functionality.",
+    techStack: ["React", "CSS", "Figma"],
+    bounty: 300,
+    difficulty: "Easy",
+    estimatedTime: "2-3 days",
+    status: "Closed"
   },
   {
     id: 3,
-    title: "Develop RESTful API endpoints",
-    project: "Mobile App Backend",
+    title: "Integrate Stripe payment gateway",
+    project: "E-commerce Platform",
     description:
-      "Create a set of RESTful API endpoints for user management, content creation, and data retrieval.",
-    techStack: ["Java", "Spring Boot", "MySQL"],
+      "Integrate the Stripe API to handle secure payment transactions for product purchases.",
+    techStack: ["Node.js", "Express", "Stripe API"],
     bounty: 600,
     difficulty: "Medium",
     estimatedTime: "4-6 days",
@@ -62,27 +58,207 @@ const issues = [
   },
   {
     id: 4,
-    title: "Implement real-time chat functionality",
-    project: "Collaboration Tool",
+    title: "Create an order management system",
+    project: "E-commerce Platform",
     description:
-      "Add real-time chat features using WebSockets, including private messaging and group chats.",
-    techStack: ["JavaScript", "React", "Node.js", "Socket.io"],
-    bounty: 800,
+      "Develop a backend system for managing customer orders, tracking status, and updating inventory.",
+    techStack: ["Node.js", "MongoDB", "Express"],
+    bounty: 700,
     difficulty: "Hard",
-    estimatedTime: "1-2 weeks",
+    estimatedTime: "5-7 days",
     status: "Open"
   },
   {
     id: 5,
-    title: "Create data visualization components",
-    project: "Business Intelligence Tool",
+    title: "Implement user profile page",
+    project: "E-commerce Platform",
     description:
-      "Develop reusable chart and graph components for visualizing complex datasets.",
-    techStack: ["JavaScript", "React", "D3.js"],
+      "Create a user profile page where customers can view and edit their account information.",
+    techStack: ["React", "Node.js", "MongoDB"],
+    bounty: 350,
+    difficulty: "Medium",
+    estimatedTime: "2-3 days",
+    status: "Closed"
+  },
+  {
+    id: 6,
+    title: "Optimize homepage load speed",
+    project: "E-commerce Platform",
+    description:
+      "Improve the loading time of the homepage by optimizing images, minifying CSS/JS files, and implementing lazy loading.",
+    techStack: ["React", "Webpack", "CSS"],
+    bounty: 400,
+    difficulty: "Medium",
+    estimatedTime: "2-3 days",
+    status: "Open"
+  },
+  {
+    id: 7,
+    title: "Create product review system",
+    project: "E-commerce Platform",
+    description:
+      "Build a system that allows users to leave reviews and ratings for products.",
+    techStack: ["React", "Node.js", "MongoDB"],
+    bounty: 500,
+    difficulty: "Medium",
+    estimatedTime: "4-5 days",
+    status: "Open"
+  },
+  {
+    id: 8,
+    title: "Implement multi-language support",
+    project: "E-commerce Platform",
+    description:
+      "Add multi-language support to the platform, allowing users to switch between different languages.",
+    techStack: ["React", "i18next", "Node.js"],
+    bounty: 600,
+    difficulty: "Hard",
+    estimatedTime: "5-7 days",
+    status: "Closed"
+  },
+  {
+    id: 9,
+    title: "Create admin dashboard",
+    project: "E-commerce Platform",
+    description:
+      "Develop a comprehensive admin dashboard for managing products, orders, and user accounts.",
+    techStack: ["React", "Node.js", "MongoDB"],
+    bounty: 700,
+    difficulty: "Hard",
+    estimatedTime: "6-8 days",
+    status: "Open"
+  },
+  {
+    id: 10,
+    title: "Fix responsive layout issues",
+    project: "E-commerce Platform",
+    description:
+      "Fix layout issues on mobile and tablet views, ensuring a smooth and responsive design.",
+    techStack: ["CSS", "HTML", "React"],
+    bounty: 200,
+    difficulty: "Easy",
+    estimatedTime: "1-2 days",
+    status: "Closed"
+  },
+  {
+    id: 11,
+    title: "Set up caching for product data",
+    project: "E-commerce Platform",
+    description:
+      "Implement caching for product data to reduce database load and improve response time.",
+    techStack: ["Node.js", "Redis"],
+    bounty: 450,
+    difficulty: "Medium",
+    estimatedTime: "3-4 days",
+    status: "Open"
+  },
+  {
+    id: 12,
+    title: "Build product category filtering",
+    project: "E-commerce Platform",
+    description:
+      "Create a filtering system to allow users to filter products by categories, price range, and rating.",
+    techStack: ["React", "Node.js", "MongoDB"],
     bounty: 550,
     difficulty: "Medium",
-    estimatedTime: "3-5 days",
+    estimatedTime: "3-4 days",
+    status: "Closed"
+  },
+  {
+    id: 13,
+    title: "Implement real-time order tracking",
+    project: "E-commerce Platform",
+    description:
+      "Develop a real-time order tracking feature where users can see the status of their orders in real-time.",
+    techStack: ["Node.js", "WebSocket", "MongoDB"],
+    bounty: 800,
+    difficulty: "Hard",
+    estimatedTime: "6-8 days",
     status: "Open"
+  },
+  {
+    id: 14,
+    title: "Create email notification system",
+    project: "E-commerce Platform",
+    description:
+      "Build an email notification system for sending order confirmations, shipping updates, and promotional offers.",
+    techStack: ["Node.js", "Nodemailer"],
+    bounty: 400,
+    difficulty: "Medium",
+    estimatedTime: "3-4 days",
+    status: "Closed"
+  },
+  {
+    id: 15,
+    title: "Implement product search functionality",
+    project: "E-commerce Platform",
+    description:
+      "Build a search bar with auto-suggestions and filtering to help users find products quickly.",
+    techStack: ["React", "Node.js", "MongoDB"],
+    bounty: 500,
+    difficulty: "Medium",
+    estimatedTime: "3-4 days",
+    status: "Open"
+  },
+  {
+    id: 16,
+    title: "Integrate Google Analytics",
+    project: "E-commerce Platform",
+    description:
+      "Set up Google Analytics to track user behavior, conversion rates, and other key metrics on the website.",
+    techStack: ["JavaScript", "Google Analytics"],
+    bounty: 250,
+    difficulty: "Easy",
+    estimatedTime: "2-3 days",
+    status: "Closed"
+  },
+  {
+    id: 17,
+    title: "Optimize product images",
+    project: "E-commerce Platform",
+    description:
+      "Optimize product images for faster loading times and better performance on the website.",
+    techStack: ["ImageMagick", "Node.js"],
+    bounty: 300,
+    difficulty: "Easy",
+    estimatedTime: "1-2 days",
+    status: "Open"
+  },
+  {
+    id: 18,
+    title: "Implement two-factor authentication",
+    project: "E-commerce Platform",
+    description:
+      "Add two-factor authentication for users to enhance account security.",
+    techStack: ["Node.js", "JWT", "SMS API"],
+    bounty: 600,
+    difficulty: "Medium",
+    estimatedTime: "4-5 days",
+    status: "Closed"
+  },
+  {
+    id: 19,
+    title: "Set up automated testing for the frontend",
+    project: "E-commerce Platform",
+    description:
+      "Implement automated tests for frontend components using Jest and React Testing Library.",
+    techStack: ["Jest", "React Testing Library"],
+    bounty: 450,
+    difficulty: "Medium",
+    estimatedTime: "3-4 days",
+    status: "Open"
+  },
+  {
+    id: 20,
+    title: "Develop shipping calculator",
+    project: "E-commerce Platform",
+    description:
+      "Create a shipping calculator that calculates shipping costs based on the user's location and selected shipping method.",
+    techStack: ["Node.js", "API Integration"],
+    bounty: 500,
+    difficulty: "Medium",
+    estimatedTime: "4-5 days",
+    status: "Closed"
   }
 ];
 
@@ -196,7 +372,7 @@ export default function Component() {
           </Select>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {Array.from({length:50}).fill("").map((issue, index) =>
+          {filteredIssues.map((issue, index) =>
             <IssueCard key={index} issue={issue} />
           )}
         </div>

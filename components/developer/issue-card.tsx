@@ -1,3 +1,4 @@
+"use client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -6,11 +7,24 @@ import {
   CardFooter,
   CardHeader
 } from "@/components/ui/card";
-import { CircleDot, Clock, Code2, DollarSign } from "lucide-react";
+import { Check, CircleDot, Clock, Code2, DollarSign } from "lucide-react";
 
-export default function IssueCard({
-  issue
-}: {
+const techStackBadge: string[] = [
+  "bg-amber-500/10 text-amber-500 hover:bg-amber-500/20",
+  "bg-cyan-500/10 text-cyan-500 hover:bg-cyan-500/20",
+  "bg-fuchsia-500/10 text-fuchsia-500 hover:bg-fuchsia-500/20",
+  "bg-indigo-500/10 text-indigo-500 hover:bg-indigo-500/20",
+  "bg-lime-500/10 text-lime-500 hover:bg-lime-500/20",
+  "bg-orange-500/10 text-orange-500 hover:bg-orange-500/20",
+  "bg-pink-500/10 text-pink-500 hover:bg-pink-500/20",
+  "bg-purple-500/10 text-purple-500 hover:bg-purple-500/20",
+  "bg-rose-500/10 text-rose-500 hover:bg-rose-500/20",
+  "bg-teal-500/10 text-teal-500 hover:bg-teal-500/20",
+  "bg-violet-500/10 text-violet-500 hover:bg-violet-500/20",
+  "bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20"
+];
+
+interface Issue {
   id: number;
   title: string;
   project: string;
@@ -20,53 +34,53 @@ export default function IssueCard({
   difficulty: string;
   estimatedTime: string;
   status: string;
-}) {
+}
+
+export default function IssueCard({ issue }: { issue: Issue }) {
   return (
     <Card className="w-full max-w-xl bg-gradient-to-br from-zinc-900 to-zinc-950 border-zinc-800 text-zinc-100">
       <CardHeader className="space-y-4">
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1.5">
             <h3 className="font-semibold text-xl leading-tight text-zinc-50">
-              Implement user authentication flow
+              {issue.title}
             </h3>
-            <p className="text-sm text-zinc-400">E-commerce Platform</p>
+            <p className="text-sm text-zinc-400">
+              {issue.project}
+            </p>
           </div>
-          <div className="bg-[#238636] flex items-center gap-1 text-xs font-medium px-[10px] py-[5px] rounded-full">
-            <CircleDot className="w-4 h-4" />Open
+          <div
+            className={`${issue.status === "Closed"
+              ? "bg-zinc-800 opacity-80 "
+              : "bg-[#238636]"} flex items-center font-semibold gap-1 text-xs font-medium px-[10px] py-[5px] rounded-full`}
+          >
+            {issue.status === "Closed"
+              ? <Check className="w-4 h-4" />
+              : <CircleDot className="w-4 h-4" />}
+            {issue.status}
           </div>
         </div>
         <p className="text-sm text-zinc-400 leading-relaxed">
-          Create a secure user authentication system with login, registration,
-          and password reset functionality.
+          {issue.description}
         </p>
       </CardHeader>
       <CardContent className="space-y-6">
-        <div className="flex flex-wrap gap-2">
-          <Badge
-            variant="secondary"
-            className="bg-amber-500/10 text-amber-500 hover:bg-amber-500/20"
-          >
-            JavaScript
-          </Badge>
-          <Badge
-            variant="secondary"
-            className="bg-blue-500/10 text-blue-500 hover:bg-blue-500/20"
-          >
-            React
-          </Badge>
-          <Badge
-            variant="secondary"
-            className="bg-green-500/10 text-green-500 hover:bg-green-500/20"
-          >
-            Node.js
-          </Badge>
-          <Badge
-            variant="secondary"
-            className="bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500/20"
-          >
-            MongoDB
-          </Badge>
-        </div>
+        {issue.techStack.map((tech, index: number) =>
+          <span key={index} >
+            <Badge
+              variant="secondary"
+              className={
+                techStackBadge[
+                  Math.floor(Math.random() * techStackBadge.length)
+                ]
+              }
+            >
+              {tech}
+            </Badge>
+            &nbsp;&nbsp;
+          </span>
+        )}
+
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <Code2 className="w-4 h-4 text-zinc-400" />
