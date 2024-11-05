@@ -52,7 +52,7 @@ export default function IssueCard({ issue }: { issue: Issue }) {
           <div
             className={`${issue.status === "Closed"
               ? "bg-zinc-800 opacity-80 "
-              : "bg-[#238636]"} flex items-center font-semibold gap-1 text-xs font-medium px-[10px] py-[5px] rounded-full`}
+              : "bg-[#238636]"} flex items-center font-semibold gap-1 text-xs px-[10px] py-[5px] rounded-full`}
           >
             {issue.status === "Closed"
               ? <Check className="w-4 h-4" />
