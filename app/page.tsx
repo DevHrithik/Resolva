@@ -20,10 +20,12 @@ export default function Home() {
       <div className="px-5 md:px-[5%]">
         <Herosection />
         <Feature />
+        </div>
         {/* <Working /> */}
         <Testimonial />
+        <div className="px-5 md:px-[5%]">
         <Pricing />
-      </div>
+        </div>
       <Footer/>
     </>
   );

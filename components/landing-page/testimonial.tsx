@@ -1,128 +1,106 @@
 "use client";
 
-import * as React from "react";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import React, { useRef } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
 
-interface Testimonial {
-  name: string;
-  handle: string;
-  image: string;
-  content: string;
-  role?: string;
-}
-
-const testimonials: Testimonial[] = [
+const testimonials = [
   {
-    name: "Orrin Madari",
-    handle: "@Omadari",
-    image: "/placeholder.svg?height=40&width=40",
+    id: 1,
     content:
-      "Been early users of Butter and loved it since. It's a core part of our learning space for product managers to upskill on various craft skills. Excited to see what else the Butter has in store for us.",
+      "This product has revolutionized our workflow. The efficiency gains are remarkable.",
+    author: "Jane Doe",
+    role: "CEO, TechCorp",
+    avatar: "/placeholder.svg?height=40&width=40",
   },
   {
-    name: "Hrithik Lodu",
-    handle: "@Hrithik69",
-    image: "/placeholder.svg?height=40&width=40",
+    id: 2,
     content:
-      "Butter has gotten so good that it's completely integrated into how we operate. We rely on Butter for all of our internal conversations and strategy sessions. More so, Butter powers all of our client work and our training workshops.",
+      "The attention to detail in the design is unparalleled. It's a joy to use daily.",
+    author: "John Smith",
+    role: "Lead Designer, CreativeCo",
+    avatar: "/placeholder.svg?height=40&width=40",
   },
   {
-    name: "Santanu Dutta",
-    handle: "@Santanu_Dutta",
-    image: "/placeholder.svg?height=40&width=40",
+    id: 3,
     content:
-      "I've been using Butter 2.0 for the last 3 cohorts of my course, How To Work Less, and I can't say enough about it - It blows Zoom out of the water for live sessions! My students constantly say how much more fun and engaging it makes the sessions!",
+      "Customer support is exceptional. They've set a new standard in the industry.",
+    author: "Emily Brown",
+    role: "Operations Manager",
+    avatar: "/placeholder.svg?height=40&width=40",
   },
   {
-    name: "Rich Webster",
-    handle: "@richwebz",
-    image: "/placeholder.svg?height=40&width=40",
+    id: 4,
     content:
-      "I've been using Butter 2.0 for the last 3 cohorts of my course, How To Work Less, and I can't say enough about it - It blows Zoom out of the water for live sessions! My students constantly say how much more fun and engaging it makes the sessions!",
+      "This tool has become indispensable for our development team. Highly recommended.",
+    author: "Michael Johnson",
+    role: "CTO, InnovateNow",
+    avatar: "/placeholder.svg?height=40&width=40",
   },
 ];
 
-export default function Component() {
+export default function ProfessionalMovingTestimonial() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   return (
-    <>
-    <div className="dark h-[60vh] md:h-screen  text-foreground  md:flex md:items-center">
-      <div className="mx-auto px-4">
-        <div className="mb-12 text-center">
-          <h2 className="text-xl md:text-3xl font-bold mb-4">
-            Loved by facilitators everywhere
-          </h2>
-          <p className="text-xl text-muted-foreground">
-            Trust their words, not just ours
-          </p>
-        </div>
-
-        <div className="relative">
-          <Carousel
-            opts={{
-              align: "start",
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 10 }}
-                    className="h-full"
-                  >
-                    <Card className="h-full bg-[#020617]">
-                      <CardHeader className="flex flex-row items-center gap-4">
-                        <Avatar>
-                          <AvatarImage
-                            src={testimonial.image}
-                            alt={testimonial.name}
-                          />
-                          <AvatarFallback>{testimonial.name[0]}</AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <h3 className="font-semibold">{testimonial.name}</h3>
-                          {testimonial.handle && (
-                            <p className="text-sm text-muted-foreground">
-                              {testimonial.handle}
-                            </p>
-                          )}
-                          {testimonial.role && (
-                            <p className="text-sm text-muted-foreground">
-                              {testimonial.role}
-                            </p>
-                          )}
-                        </div>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-sm text-muted-foreground">
-                          {testimonial.content}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="relative -left-4 -right-4 top-1/2 flex -translate-y-1/2 justify-between">
-              <CarouselPrevious className="relative -translate-y-1/2 translate-x-0" />
-              <CarouselNext className="relative -translate-y-1/2 translate-x-0" />
-            </div>
-          </Carousel>
-        </div>
+    <div className="w-full h-[60vh] md:min-h-screen overflow-hidden py-16 md:flex md:flex-col md:items-center md:justify-center">
+      {/* <h2 className="text-xl md:text-3xl font-bold text-center mb-12 text-white tracking-tight">
+        What Our Clients Say
+      </h2> */}
+      <div
+        ref={containerRef}
+        className="flex"
+        style={{
+          animation: `moveLeft 35s linear infinite`,
+        }}
+      >
+        {[...testimonials, ...testimonials, ...testimonials, ...testimonials,...testimonials].map(
+          (testimonial, index) => (
+            <Card
+              key={`${testimonial.id}-${index}`}
+              className="mx-4 w-96 flex-shrink-0 transition-all duration-500 hover:transform hover:scale-105 bg-[#020617] border-slate-800 hover:border-blue-500 group"
+            >
+              <CardContent className="p-8 relative">
+                
+                 
+                
+                <p className="text-slate-300 mb-6 leading-relaxed">
+                  {testimonial.content}
+                </p>
+                <div className="flex items-center mt-6 pt-6 border-t border-slate-700">
+                  <Avatar className="h-12 w-12 mr-4 ring-2 ring-slate-700 group-hover:ring-blue-400 transition-all duration-300">
+                    <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
+                    <AvatarFallback className="bg-slate-700 text-slate-200">
+                      {testimonial.author
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <div className="font-semibold text-white group-hover:text-blue-400 transition-colors duration-300">
+                      {testimonial.author}
+                    </div>
+                    <div className="text-sm text-slate-400">
+                      {testimonial.role}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )
+        )}
       </div>
+      <style jsx>{`
+        @keyframes moveLeft {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+      `}</style>
     </div>
-
-   
-    </>
   );
 }

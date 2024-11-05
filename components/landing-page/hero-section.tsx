@@ -1,8 +1,8 @@
-"use client"
+"use client";
 import React, { useEffect, useRef } from "react";
 import { Button } from "../ui/button";
 import gsap from "gsap";
-
+import { HoverBorderGradient } from "../ui/hover-border-gradient";
 const Herosection = () => {
   const leftComponent = useRef(null);
   const rightComponent = useRef(null);
@@ -13,14 +13,14 @@ const Herosection = () => {
       opacity: 0,
       duration: 1.5,
       ease: "power3.out",
-      stagger:0
+      stagger: 0,
     });
     gsap.from(rightComponent.current, {
       x: 200,
       opacity: 0,
       duration: 1.5,
       ease: "power3.out",
-      stagger:0
+      stagger: 0,
     });
   }, []);
 
@@ -41,10 +41,8 @@ const Herosection = () => {
           </span>
         </div>
 
-        <div>
-          <Button className="bg-[#2f93e0] hover:bg-[#006AB9] text-[16px] font-medium">
-            Get Started
-          </Button>
+        <div className="flex justify-center md:block">
+          <HoverBorderGradient>Get Started</HoverBorderGradient>
         </div>
       </div>
       <div
