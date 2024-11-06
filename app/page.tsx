@@ -27,6 +27,7 @@ export default function Home() {
         <Pricing />
       </div>
       <Footer />
+      <Footer />
     </>
   );
 }

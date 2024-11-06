@@ -43,7 +43,7 @@ export default function ProfessionalMovingTestimonial() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="w-full h-[60vh] md:min-h-screen overflow-hidden py-16 md:flex md:items-center">
+    <div className="w-full h-[60vh] md:min-h-screen overflow-hidden py-16 flex items-center">
       {/* <h2 className="text-xl md:text-3xl font-bold text-center mb-12 text-white tracking-tight">
         What Our Clients Say
       </h2> */}
