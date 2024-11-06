@@ -9,6 +9,17 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		extend: {
+			keyframes: {
+			  mobe: {
+				"0%": { transform: "translateX(0%)" },
+				"100%": { transform: "translateX(-100%)" },
+			  },
+			},
+			animation: {
+			  mobe: "mobe 25s linear infinite",
+			},
+		  },
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
