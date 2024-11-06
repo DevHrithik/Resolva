@@ -65,11 +65,11 @@ const Pricing = () => {
             <Card
               key={index}
               className={`relative ${
-                plan.isComingSoon ? "border-slate-800" : "border-blue-500"
+                plan.isComingSoon ? "border-slate-800" : "border-green-500"
               } bg-slate-950`}
             >
               <CardHeader>
-                <h3 className="text-lg font-medium text-blue-400">
+                <h3 className="text-lg font-medium text-green-400">
                   {plan.title}
                 </h3>
                 <div className="flex items-baseline text-white">
@@ -82,7 +82,7 @@ const Pricing = () => {
                 <ul className="space-y-2 text-sm text-slate-300">
                   {plan.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-center">
-                      <Check className="mr-2 h-4 w-4 text-blue-400" />
+                      <Check className="mr-2 h-4 w-4 text-green-400" />
                       {feature}
                     </li>
                   ))}
@@ -93,7 +93,7 @@ const Pricing = () => {
                   className={`w-full ${
                     plan.isComingSoon
                       ? "bg-slate-800 hover:bg-slate-700"
-                      : "bg-blue-600 hover:bg-blue-500"
+                      : "bg-green-600 hover:bg-green-500"
                   } text-white`}
                   variant={plan.isComingSoon ? "secondary" : "default"}
                 >

@@ -57,14 +57,14 @@ export default function ProfessionalMovingTestimonial() {
         {[...testimonials].map((testimonial, index) => (
           <Card
             key={`${testimonial.id}-${index}`}
-            className="mx-4 w-96 flex-shrink-0 transition-all duration-500 hover:transform hover:scale-105 bg-[#020617] border-slate-800 hover:border-blue-500 group"
+            className="mx-4 w-96 flex-shrink-0 transition-all duration-500 hover:transform hover:scale-105 bg-[#020617] border-slate-800 hover:border-green-500 group"
           >
             <CardContent className="p-8 relative">
               <p className="text-slate-300 mb-6 leading-relaxed">
                 {testimonial.content}
               </p>
               <div className="flex items-center mt-6 pt-6 border-t border-slate-700">
-                <Avatar className="h-12 w-12 mr-4 ring-2 ring-slate-700 group-hover:ring-blue-400 transition-all duration-300">
+                <Avatar className="h-12 w-12 mr-4 ring-2 ring-slate-700 group-hover:ring-green-400 transition-all duration-300">
                   <AvatarImage
                     src={testimonial.avatar}
                     alt={testimonial.author}
@@ -77,7 +77,7 @@ export default function ProfessionalMovingTestimonial() {
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <div className="font-semibold text-white group-hover:text-blue-400 transition-colors duration-300">
+                  <div className="font-semibold text-white group-hover:text-green-400 transition-colors duration-300">
                     {testimonial.author}
                   </div>
                   <div className="text-sm text-slate-400">
@@ -99,14 +99,14 @@ export default function ProfessionalMovingTestimonial() {
         {[...testimonials].map((testimonial, index) => (
           <Card
             key={`${testimonial.id}-${index}`}
-            className="mx-4 w-96 flex-shrink-0 transition-all duration-500 hover:transform hover:scale-105 bg-[#020617] border-slate-800 hover:border-blue-500 group"
+            className="mx-4 w-96 flex-shrink-0 transition-all duration-500 hover:transform hover:scale-105 bg-[#020617] border-slate-800 hover:border-green-500 group"
           >
             <CardContent className="p-8 relative">
               <p className="text-slate-300 mb-6 leading-relaxed">
                 {testimonial.content}
               </p>
               <div className="flex items-center mt-6 pt-6 border-t border-slate-700">
-                <Avatar className="h-12 w-12 mr-4 ring-2 ring-slate-700 group-hover:ring-blue-400 transition-all duration-300">
+                <Avatar className="h-12 w-12 mr-4 ring-2 ring-slate-700 group-hover:ring-green-400 transition-all duration-300">
                   <AvatarImage
                     src={testimonial.avatar}
                     alt={testimonial.author}
@@ -119,7 +119,7 @@ export default function ProfessionalMovingTestimonial() {
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <div className="font-semibold text-white group-hover:text-blue-400 transition-colors duration-300">
+                  <div className="font-semibold text-white group-hover:text-green-400 transition-colors duration-300">
                     {testimonial.author}
                   </div>
                   <div className="text-sm text-slate-400">

@@ -28,7 +28,7 @@ const Navbar = () => {
         })}
       </div>
       <div className="flex items-center gap-6 text-sm font-semibold">
-        <Link href="/sign-in" className="">
+        <Link href="/sign-in" className="px-3 py-2 bg-green-600 text-white  shadow-lg rounded-md">
           Sign In
         </Link>
         <Link

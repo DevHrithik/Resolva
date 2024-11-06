@@ -13,7 +13,7 @@ const Feature = () => {
               onClick={() => setActiveTab("developers")}
               className={`flex-1 sm:flex-none px-4 sm:px-6 py-2.5 rounded-lg font-medium text-sm transition-all duration-200 ${
                 activeTab === "developers"
-                  ? "bg-blue-600 text-white shadow-blue-500/20 shadow-lg"
+                  ? "bg-green-600 text-white shadow-green-500/20 shadow-lg"
                   : "text-gray-400 hover:text-white hover:bg-[#1A1A1A]"
               }`}
             >
@@ -23,7 +23,7 @@ const Feature = () => {
               onClick={() => setActiveTab("maintainers")}
               className={`flex-1 sm:flex-none px-4 sm:px-6 py-2.5 rounded-lg font-medium text-sm transition-all duration-200 ${
                 activeTab === "maintainers"
-                  ? "bg-blue-600 text-white shadow-blue-500/20 shadow-lg"
+                  ? "bg-green-600 text-white shadow-green-500/20 shadow-lg"
                   : "text-gray-400 hover:text-white hover:bg-[#1A1A1A]"
               }`}
             >
@@ -91,7 +91,7 @@ const Feature = () => {
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
                   <span className="text-xs sm:text-sm font-medium text-gray-400">
                     {activeTab === "developers"
                       ? "Developer View"
