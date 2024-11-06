@@ -43,7 +43,7 @@ export default function ProfessionalMovingTestimonial() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="w-full h-[60vh] md:min-h-screen overflow-hidden py-16 md:flex md:flex-col md:items-center md:justify-center">
+    <div className="w-full h-[60vh] md:min-h-screen overflow-hidden py-16 md:flex md:items-center">
       {/* <h2 className="text-xl md:text-3xl font-bold text-center mb-12 text-white tracking-tight">
         What Our Clients Say
       </h2> */}
@@ -51,45 +51,85 @@ export default function ProfessionalMovingTestimonial() {
         ref={containerRef}
         className="flex"
         style={{
-          animation: `moveLeft 35s linear infinite`,
+          animation: `moveLeft 25s linear infinite`,
         }}
       >
-        {[...testimonials, ...testimonials, ...testimonials, ...testimonials,...testimonials].map(
-          (testimonial, index) => (
-            <Card
-              key={`${testimonial.id}-${index}`}
-              className="mx-4 w-96 flex-shrink-0 transition-all duration-500 hover:transform hover:scale-105 bg-[#020617] border-slate-800 hover:border-blue-500 group"
-            >
-              <CardContent className="p-8 relative">
-                
-                 
-                
-                <p className="text-slate-300 mb-6 leading-relaxed">
-                  {testimonial.content}
-                </p>
-                <div className="flex items-center mt-6 pt-6 border-t border-slate-700">
-                  <Avatar className="h-12 w-12 mr-4 ring-2 ring-slate-700 group-hover:ring-blue-400 transition-all duration-300">
-                    <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
-                    <AvatarFallback className="bg-slate-700 text-slate-200">
-                      {testimonial.author
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <div className="font-semibold text-white group-hover:text-blue-400 transition-colors duration-300">
-                      {testimonial.author}
-                    </div>
-                    <div className="text-sm text-slate-400">
-                      {testimonial.role}
-                    </div>
+        {[...testimonials].map((testimonial, index) => (
+          <Card
+            key={`${testimonial.id}-${index}`}
+            className="mx-4 w-96 flex-shrink-0 transition-all duration-500 hover:transform hover:scale-105 bg-[#020617] border-slate-800 hover:border-blue-500 group"
+          >
+            <CardContent className="p-8 relative">
+              <p className="text-slate-300 mb-6 leading-relaxed">
+                {testimonial.content}
+              </p>
+              <div className="flex items-center mt-6 pt-6 border-t border-slate-700">
+                <Avatar className="h-12 w-12 mr-4 ring-2 ring-slate-700 group-hover:ring-blue-400 transition-all duration-300">
+                  <AvatarImage
+                    src={testimonial.avatar}
+                    alt={testimonial.author}
+                  />
+                  <AvatarFallback className="bg-slate-700 text-slate-200">
+                    {testimonial.author
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <div className="font-semibold text-white group-hover:text-blue-400 transition-colors duration-300">
+                    {testimonial.author}
+                  </div>
+                  <div className="text-sm text-slate-400">
+                    {testimonial.role}
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          )
-        )}
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+      <div
+        ref={containerRef}
+        className="flex"
+        style={{
+          animation: `moveLeft 25s linear infinite`,
+        }}
+      >
+        {[...testimonials].map((testimonial, index) => (
+          <Card
+            key={`${testimonial.id}-${index}`}
+            className="mx-4 w-96 flex-shrink-0 transition-all duration-500 hover:transform hover:scale-105 bg-[#020617] border-slate-800 hover:border-blue-500 group"
+          >
+            <CardContent className="p-8 relative">
+              <p className="text-slate-300 mb-6 leading-relaxed">
+                {testimonial.content}
+              </p>
+              <div className="flex items-center mt-6 pt-6 border-t border-slate-700">
+                <Avatar className="h-12 w-12 mr-4 ring-2 ring-slate-700 group-hover:ring-blue-400 transition-all duration-300">
+                  <AvatarImage
+                    src={testimonial.avatar}
+                    alt={testimonial.author}
+                  />
+                  <AvatarFallback className="bg-slate-700 text-slate-200">
+                    {testimonial.author
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <div className="font-semibold text-white group-hover:text-blue-400 transition-colors duration-300">
+                    {testimonial.author}
+                  </div>
+                  <div className="text-sm text-slate-400">
+                    {testimonial.role}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
       </div>
       <style jsx>{`
         @keyframes moveLeft {
@@ -97,7 +137,7 @@ export default function ProfessionalMovingTestimonial() {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translateX(-100%);
           }
         }
       `}</style>
