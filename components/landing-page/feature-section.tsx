@@ -196,7 +196,7 @@ const Feature = () => {
                   Last Updated
                 </div>
                 <div className="text-xs sm:text-sm font-medium tracking-tight text-gray-200">
-                  {new Date().toLocaleDateString()}
+                  {new Date().toISOString().split("T")[0]}
                 </div>
               </div>
             </div>
@@ -255,4 +255,3 @@ const Feature = () => {
 };
 
 export default Feature;
-
