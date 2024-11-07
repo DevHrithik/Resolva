@@ -4,16 +4,19 @@ import { motion } from "framer-motion";
 
 const GlowingGridBackground = () => {
   const gridLines = Array.from({ length: 8 });
-  const [innerWidth, setinnerWidth] = useState(window.innerWidth);
+  const [innerWidth, setInnerWidth] = useState(0);
+
   useEffect(() => {
+    setInnerWidth(window.innerWidth);
+
     const handleResize = () => {
-      setinnerWidth(window.innerWidth);
+      setInnerWidth(window.innerWidth);
     };
+
     window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [innerWidth]);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <>
       <div

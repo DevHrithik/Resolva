@@ -8,59 +8,59 @@ import {
   Menu,
   Search,
   Star,
-  Wallet
+  Wallet,
 } from "lucide-react";
 import Link from "next/link";
 import { Bell, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { SignedIn, UserButton } from "@clerk/nextjs";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 const NAVLIST = [
   {
     name: "Dashboard",
     href: "/developer",
-    icon: Layout
+    icon: Layout,
   },
   {
     name: "Explore",
     href: "/developer/explore",
-    icon: Search
+    icon: Search,
   },
   {
     name: "Billing",
     href: "/developer/billing",
-    icon: Wallet
+    icon: Wallet,
   },
   {
     name: "Watchlist",
     href: "/developer/watchlist",
-    icon: Star
+    icon: Star,
   },
   {
     name: "Works",
     href: "/developer/works",
-    icon: GitMerge
+    icon: GitMerge,
   },
   {
     name: "Leaderboard",
     href: "/developer/leaderboard",
-    icon: List
-  }
+    icon: List,
+  },
 ];
 
 export default function RootLayout({
-  children
+  children,
 }: {
   children: React.ReactNode;
 }) {
   const PATH = usePathname();
 
   const getHeaderTitle = () => {
-    const currentPage = NAVLIST.find(item => item.href === PATH);
+    const currentPage = NAVLIST.find((item) => item.href === PATH);
     return currentPage ? currentPage.name : "Dashboard";
   };
 
@@ -80,18 +80,18 @@ export default function RootLayout({
           </div>
           <div className="flex-1">
             <nav className="grid items-start px-4 text-sm font-medium">
-              {NAVLIST.map((item, index) =>
+              {NAVLIST.map((item, index) => (
                 <Link
                   key={index}
-                  className={`${item.href === PATH
-                    ? "text-white"
-                    : "text-zinc-400"} flex items-center gap-3 rounded-lg px-3 py-2 hover:text-white transition-all`}
+                  className={`${
+                    item.href === PATH ? "text-white" : "text-zinc-400"
+                  } flex items-center gap-3 rounded-lg px-3 py-2 hover:text-white transition-all`}
                   href={item.href}
                 >
                   <item.icon className="h-4 w-4" />
                   {item.name}
                 </Link>
-              )}
+              ))}
             </nav>
           </div>
           <div className="mt-auto p-4">Subscription section</div>
@@ -126,7 +126,7 @@ export default function RootLayout({
                 </div>
                 <div className="flex-1">
                   <nav className="grid items-start text-sm font-medium">
-                    {NAVLIST.map((item, index) =>
+                    {NAVLIST.map((item, index) => (
                       <Link
                         key={index}
                         className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white transition-all"
@@ -135,7 +135,7 @@ export default function RootLayout({
                         <item.icon className="h-4 w-4" />
                         {item.name}
                       </Link>
-                    )}
+                    ))}
                   </nav>
                 </div>
                 <div className="mt-auto p-4">Subscription</div>
@@ -145,9 +145,7 @@ export default function RootLayout({
           <div className="w-full flex-1">
             <form>
               <div className="relative">
-                <h2 className="font-bold text-xl">
-                  {getHeaderTitle()}
-                </h2>
+                <h2 className="font-bold text-xl">{getHeaderTitle()}</h2>
               </div>
             </form>
           </div>
@@ -167,10 +165,14 @@ export default function RootLayout({
             <Settings className="h-4 w-4 text-white" />
             <span className="sr-only">Toggle settings</span>
           </Button>
+          <Button
+            className="rounded-full border border-zinc-800 hover:bg-zinc-900 bg-black"
+            variant="ghost"
+            onClick={() => signOut({ callbackUrl: "/" })}
+          >
+            <span className="text-white text-sm px-2">Sign out</span>
+          </Button>
           <Separator orientation="vertical" className="h-6" />
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
         </header>
         {children}
       </div>

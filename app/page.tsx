@@ -1,6 +1,6 @@
 "use client";
 
-import GlowingGridBackground from "@/components/Grid/GlowingGridBackground";
+import GlowingGridBackground from "@/components/grid/glowing-grid-background";
 import Feature from "@/components/landing-page/feature-section";
 import Footer from "@/components/landing-page/footer";
 import Herosection from "@/components/landing-page/hero-section";

@@ -7,7 +7,7 @@ const NAVLIST = [
   { name: "Features", path: "#features" },
   { name: "Working", path: "#working" },
   { name: "Pricing", path: "#pricing" },
-  { name: "Testimonial", path: "#testimonial" }
+  { name: "Testimonial", path: "#testimonial" },
 ];
 const LOGO = "Resolva";
 const REPO = "https://github.com/DevHrithik/Resolva.git";
@@ -15,9 +15,7 @@ const REPO = "https://github.com/DevHrithik/Resolva.git";
 const Navbar = () => {
   return (
     <div className="fixed top-0 w-full backdrop-blur-[5px] backdrop-opacity-100 border-[#ffffff17] border-b text-white flex items-center justify-between px-[3%] py-3 z-50">
-      <div className="text-2xl font-semibold">
-        {LOGO}
-      </div>
+      <div className="text-2xl font-semibold">{LOGO}</div>
       <div className="hidden md:flex ml-[5%] text-[.8rem] font-semibold items-center gap-8 rounded-sm px-5 py-2 text-[#ffffff]">
         {NAVLIST.map((item, index) => {
           return (
@@ -28,7 +26,10 @@ const Navbar = () => {
         })}
       </div>
       <div className="flex items-center gap-6 text-sm font-semibold">
-        <Link href="/sign-in" className="px-3 py-2 bg-green-600 text-white  shadow-lg rounded-md">
+        <Link
+          href="/login"
+          className="px-3 py-2 bg-green-600 text-white  shadow-lg rounded-md"
+        >
           Sign In
         </Link>
         <Link

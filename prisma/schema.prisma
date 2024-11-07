@@ -1,0 +1,155 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+
+  // Auth related
+  accounts      Account[]
+  sessions      Session[]
+  Authenticator Authenticator[]
+
+  // Profile related
+  githubUsername  String? @unique
+  fullName        String?
+  bio             String?
+  twitterHandle   String?
+  linkedinUrl     String?
+  personalWebsite String?
+
+  // Role and preferences
+  roles      UserRole[]  @default([DEVELOPER])
+  techStacks TechStack[] // Many-to-many relation
+  onboarded  Boolean     @default(false)
+
+  // User activity
+  issuesCreated   Issue[]      @relation("CreatedIssues")
+  issuesSolved    Issue[]      @relation("SolvedIssues")
+  maintainedRepos Repository[] @relation("MaintainedRepos")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum UserRole {
+  DEVELOPER
+  MAINTAINER
+}
+
+model TechStack {
+  id      String  @id @default(cuid())
+  name    String  @unique
+  users   User[]
+  Issue   Issue?  @relation(fields: [issueId], references: [id])
+  issueId String?
+}
+
+model Repository {
+  id          String  @id @default(cuid())
+  name        String
+  description String?
+  url         String
+  maintainer  User    @relation("MaintainedRepos", fields: [userId], references: [id])
+  userId      String
+  issues      Issue[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Issue {
+  id           String      @id @default(cuid())
+  title        String
+  description  String
+  bountyAmount Float
+  status       IssueStatus @default(OPEN)
+
+  repository Repository @relation(fields: [repoId], references: [id])
+  repoId     String
+
+  creator   User   @relation("CreatedIssues", fields: [creatorId], references: [id])
+  creatorId String
+
+  solver   User?   @relation("SolvedIssues", fields: [solverId], references: [id])
+  solverId String?
+
+  techStacks TechStack[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum IssueStatus {
+  OPEN
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+// Auth related models
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
+}
