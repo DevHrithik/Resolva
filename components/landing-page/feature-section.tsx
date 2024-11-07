@@ -127,7 +127,7 @@ const Feature = () => {
               onClick={() => setActiveTab("developers")}
               className={`flex-1 sm:flex-none px-4 sm:px-6 py-2.5 rounded-lg font-medium text-sm transition-colors ${
                 activeTab === "developers"
-                  ? "bg-green-600 text-white shadow-green-500/20 shadow-lg"
+                  ? "bg-[#00E599] text-white shadow-green-500/20 shadow-lg hover:bg-[#00E5BF]"
                   : "text-gray-400 hover:text-white hover:bg-[#1A1A1A]"
               }`}
             >
@@ -140,7 +140,7 @@ const Feature = () => {
               onClick={() => setActiveTab("maintainers")}
               className={`flex-1 sm:flex-none px-4 sm:px-6 py-2.5 rounded-lg font-medium text-sm transition-colors ${
                 activeTab === "maintainers"
-                  ? "bg-green-600 text-white shadow-green-500/20 shadow-lg"
+                  ? "bg-[#00E599] text-white shadow-green-500/20 shadow-lg hover:bg-[#00E5BF]"
                   : "text-gray-400 hover:text-white hover:bg-[#1A1A1A]"
               }`}
             >
