@@ -1,56 +1,60 @@
-"use client";
-import React, { useEffect, useRef } from "react";
-import { Button } from "../ui/button";
-import gsap from "gsap";
-import { HoverBorderGradient } from "../ui/hover-border-gradient";
-const Herosection = () => {
-  const leftComponent = useRef(null);
-  const rightComponent = useRef(null);
+'use client'
+
+import React, { useEffect, useRef } from "react"
+import { Button } from "@/components/ui/button"
+import { gsap } from "gsap"
+import { HoverBorderGradient } from "../ui/hover-border-gradient"
+export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const headingRef = useRef<HTMLHeadingElement>(null)
+  const subheadingRef = useRef<HTMLParagraphElement>(null)
+  const buttonRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    gsap.from(leftComponent.current, {
-      x: -200,
-      opacity: 0,
-      duration: 1.5,
-      ease: "power3.out",
-      stagger: 0,
-    });
-    gsap.from(rightComponent.current, {
-      x: 200,
-      opacity: 0,
-      duration: 1.5,
-      ease: "power3.out",
-      stagger: 0,
-    });
-  }, []);
+    if (sectionRef.current && headingRef.current && subheadingRef.current && buttonRef.current) {
+      gsap.fromTo(
+        [headingRef.current.children, subheadingRef.current, buttonRef.current],
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: "power3.out",
+        }
+      )
+    }
+  }, [])
 
   return (
-    <div className="h-[40vh] md:h-screen flex flex-col md:flex-row justify-between items-center py-[30%] md:py-0">
-      <div
-        ref={leftComponent}
-        className="flex flex-col gap-4 text-center md:text-left"
-      >
-        <div className="text-[40px] md:text-[80px] font-bold md:leading-tight">
-          <h1>Solve issues</h1>
-          <h1 className="-mt-8">earn rewards.</h1>
-        </div>
-
-        <div className="w-full md:w-[400px]">
-          <span className="font-medium text-[20px] md:text-[20px] opacity-60">
-            Solve real-world problems and get rewarded for your contributions.
-          </span>
-        </div>
-
-        <div className="flex justify-center md:block">
-          <HoverBorderGradient>Get Started</HoverBorderGradient>
+    <section
+      ref={sectionRef}
+      className="min-h-[40vh] md:min-h-[60vh] flex flex-col justify-center items-center py-16 md:py-24 lg:py-40"
+    >
+      <div className="container px-4 md:px-6 max-w-6xl">
+        <div className="flex flex-col gap-8 text-center">
+          <h1
+            ref={headingRef}
+            className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight"
+          >
+            <span className="inline-block">Solve</span>{' '}
+            <span className="inline-block">issues,</span>{' '}
+            <span className="inline-block">earn</span>{' '}
+            <span className="inline-block">rewards.</span>
+          </h1>
+          <p
+            ref={subheadingRef}
+            className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto"
+          >
+            Tackle real-world problems and get rewarded for your innovative solutions. Join our community of problem solvers today.
+          </p>
+          <div ref={buttonRef} className="flex justify-center">
+          <Button size="lg" className="text-lg px-6 py-6 rounded-full bg-[#00E599] hover:bg-[#00E5BF]">
+              Get Started
+            </Button>
+          </div>
         </div>
       </div>
-      <div
-        ref={rightComponent}
-        className="hidden md:block w-[50%] h-[400px] bg-gray-500 rounded-lg"
-      ></div>
-    </div>
-  );
-};
-
-export default Herosection;
+    </section>
+  )
+}

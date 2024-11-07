@@ -1,15 +1,10 @@
-"use client";
+'use client'
 
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { Check, Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import React from "react"
+import { motion } from "framer-motion"
+import { Check, Star } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 
 const pricingPlans = [
   {
@@ -25,13 +20,11 @@ const pricingPlans = [
     ],
     buttonText: "Get Started Free",
     isComingSoon: false,
-
   },
   {
     title: "Starter",
     price: 12,
-    description:
-      "Perfect for growing businesses starting their financial journey",
+    description: "Perfect for growing businesses starting their financial journey",
     features: [
       "Automated Expense Tracking with Detailed Analysis",
       "Family Expense Tracking (4 Users)",
@@ -40,10 +33,9 @@ const pricingPlans = [
       "Advanced Tax Calculator",
     ],
     popular: true,
-    buttonText: "Get Satated",
+    buttonText: "Get Started",
     isComingSoon: false,
   },
-
   {
     title: "Professional",
     price: 32,
@@ -55,26 +47,12 @@ const pricingPlans = [
       "Personalized Investment Recommendations",
       "Comprehensive Tax Planning Suite",
     ],
-    buttonText: "Get Satated",
+    buttonText: "Get Started",
     isComingSoon: false,
   },
-];
+]
 
 export default function Component() {
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.7 });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.5,
-      },
-    },
-  };
-
   return (
     <div className="px-4 py-16">
       <div className="mx-auto max-w-7xl">
@@ -87,16 +65,16 @@ export default function Component() {
             </span>
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto">
-            Select a plan that best fits your needs. All plans include our core
-            features with varying levels of sophistication and support.
+            Select a plan that best fits your needs. All plans include our core features with varying levels of
+            sophistication and support.
           </p>
         </div>
 
         <motion.div
-          ref={containerRef}
-          variants={containerVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.7 }}
+          transition={{ staggerChildren: 0.2 }}
           className="grid gap-8 lg:grid-cols-3 lg:gap-12"
         >
           {pricingPlans.map((plan, index) => (
@@ -109,32 +87,28 @@ export default function Component() {
         </p>
       </div>
     </div>
-  );
+  )
 }
 
 function AnimatedCard({ plan }) {
-  const cardVariants = {
-    hidden: { opacity: 0, y: 100 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 50,
-        damping: 20,
-        duration: 0.8,
-        opacity: { duration: 1, ease: [0.25, 0.1, 0.25, 1] },
-      },
-    },
-  };
-
   return (
-    <motion.div variants={cardVariants}>
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 50 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            type: "spring",
+            stiffness: 80,
+            damping: 15,
+          },
+        },
+      }}
+    >
       <Card
         className={`relative overflow-hidden transition-transform duration-300 hover:scale-105 ${
-          plan.isComingSoon
-            ? "bg-black/40 border-slate-800"
-            : "bg-black/40 border-[#00E5BF]"
+          plan.isComingSoon ? "bg-black/40 border-slate-800" : "bg-black/40 border-[#00E5BF]"
         }`}
       >
         {plan.popular && (
@@ -146,16 +120,10 @@ function AnimatedCard({ plan }) {
         )}
 
         <CardHeader className="pb-8 pt-6">
-          <h3 className="text-xl font-bold text-[#00E599] mb-2">
-            {plan.title}
-          </h3>
+          <h3 className="text-xl font-bold text-[#00E599] mb-2">{plan.title}</h3>
           <div className="flex items-baseline text-white mb-2">
-            <span className="text-4xl font-bold">
-              {plan.price === 0 ? "Free" : `$${plan.price}`}
-            </span>
-            {plan.price > 0 && (
-              <span className="text-slate-400 ml-2 text-sm">/month</span>
-            )}
+            <span className="text-4xl font-bold">{plan.price === 0 ? "Free" : `$${plan.price}`}</span>
+            {plan.price > 0 && <span className="text-slate-400 ml-2 text-sm">/month</span>}
           </div>
           <p className="text-sm text-slate-400">{plan.description}</p>
         </CardHeader>
@@ -163,10 +131,7 @@ function AnimatedCard({ plan }) {
         <CardContent className="pb-8">
           <ul className="space-y-4">
             {plan.features.map((feature, featureIndex) => (
-              <li
-                key={featureIndex}
-                className="flex items-center text-slate-300 text-sm"
-              >
+              <li key={featureIndex} className="flex items-center text-slate-300 text-sm">
                 <Check className="mr-3 h-5 w-5 flex-shrink-0 text-[#00E599] " />
                 <span>{feature}</span>
               </li>
@@ -187,5 +152,5 @@ function AnimatedCard({ plan }) {
         </CardFooter>
       </Card>
     </motion.div>
-  );
+  )
 }

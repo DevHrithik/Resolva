@@ -36,7 +36,7 @@ const Feature = () => {
   };
 
   return (
-    <div className="min-h-screen w-full py-20">
+    <div className="min-h-screen w-full">
       {/* New Professional Header Section */}
       <div className="flex justify-center  mb-16">
         <div className="">
@@ -45,7 +45,7 @@ const Feature = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-flex items-center rounded-md bg-green-400/10 px-4 py-1.5 text-sm font-medium text-green-400 ring-1 ring-inset ring-green-400/20 mb-6">
+            <span className="inline-flex items-center rounded-md bg-green-400/10 px-4 py-1.5 text-sm font-medium text-[#00E599] ring-1 ring-inset ring-green-400/20 mb-6">
               Enterprise Dashboard
             </span>
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-4">
