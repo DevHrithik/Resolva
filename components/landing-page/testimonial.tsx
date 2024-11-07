@@ -8,8 +8,6 @@ export default function Component() {
       author: "Guillermo Rauch",
       role: "CEO, Vercel",
       avatar: "/placeholder.svg",
-      company: "Vercel",
-      logo: "/vercel-logo.svg",
       className: "lg:col-span-1 lg:row-span-1"
     },
     {
@@ -31,8 +29,6 @@ export default function Component() {
       author: "Nick Parsons",
       role: "Director of Marketing, Clerk",
       avatar: "/placeholder.svg",
-      company: "Clerk",
-      logo: "/clerk-logo.svg",
       className: "lg:col-start-3 lg:col-span-1 lg:row-start-1"
     },
     {
@@ -45,29 +41,7 @@ export default function Component() {
   ]
 
   return (
-    <div className="relative min-h-screen px-4 py-12 md:py-20 overflow-hidde">
-      {/* Base grid background */}
-      {/* <div 
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px),
-                           linear-gradient(180deg, rgba(255,255,255,0.07) 1px, transparent 1px)`,
-          backgroundSize: "100px 100px",
-          opacity: 0.4,
-        }}
-      /> */}
-
-      {/* Ambient glow */}
-      {/* <div className="absolute inset-0">
-        <div
-          className="absolute top-0 left-1/4 w-1/2 h-1/2"
-          style={{
-            background: "radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 70%)",
-            filter: "blur(80px)",
-          }}
-        />
-      </div> */}
-
+    <div className="relative min-h-screen px-4 py-12 md:py-20">
       <div className="relative mx-auto max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-4">
@@ -86,43 +60,65 @@ export default function Component() {
             <Card 
               key={i} 
               className={`
-                bg-black/40 backdrop-blur-sm border border-white/10
-                hover:border-green-600/100 transition-colors
-                text-white
+                group
+                bg-black/40
+                backdrop-blur-sm
+                border border-white/[0.07]
+                hover:border-white/[0.15]
+                transition-all
+                duration-500
+                hover:-translate-y-1
+                relative
+                overflow-hidden
                 ${testimonial.className}
-                relative overflow-hidden
               `}
             >
-              {/* Card inner glow effect */}
+              {/* Ambient glow effect */}
               <div 
-                className="absolute inset-0 opacity-30"
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 style={{
-                  background: "radial-gradient(circle at 50% 0%, rgba(255,255,255,0.1), transparent 70%)"
+                  background: "radial-gradient(circle at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 70%)",
+                  filter: "blur(20px)"
                 }}
               />
-              
-              <CardContent className="p-6 relative">
-                {testimonial.logo && (
-                  <img 
-                    src={testimonial.logo} 
-                    alt={testimonial.company} 
-                    className="h-8 mb-4 invert opacity-70"
-                  />
-                )}
-                <div className="space-y-4">
-                  <p className="text-sm leading-relaxed text-gray-300">
+
+              {/* Subtle border glow */}
+              <div 
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  boxShadow: "inset 0 0 15px rgba(255,255,255,0.05)"
+                }}
+              />
+
+              <CardContent className="relative p-8">
+                {/* Quote */}
+                <div className="space-y-6">
+                  <p className="text-[15px] leading-relaxed text-white/70">
                     {testimonial.quote}
                   </p>
-                  <div className="flex items-center gap-3">
-                    <Avatar>
+                  
+                  {/* Separator with glow */}
+                  <div className="relative h-px w-full">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
+                    <div 
+                      className="absolute inset-0 blur-sm"
+                      style={{
+                        background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent)"
+                      }}
+                    />
+                  </div>
+                  
+                  {/* Author info */}
+                  <div className="flex items-center gap-4">
+                    <Avatar className="ring-1 ring-white/[0.07] ring-offset-2 ring-offset-black">
                       <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
-                      <AvatarFallback className="bg-gray-900 text-gray-300">
+                      <AvatarFallback className="bg-black text-white/50">
                         {testimonial.author.split(' ').map(n => n[0]).join('')}
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <div className="font-medium text-sm text-gray-200">{testimonial.author}</div>
-                      <div className="text-sm text-gray-400">{testimonial.role}</div>
+                      <div className="font-medium text-sm text-white/90">{testimonial.author}</div>
+                      <div className="text-sm text-white/50">{testimonial.role}</div>
                     </div>
                   </div>
                 </div>
