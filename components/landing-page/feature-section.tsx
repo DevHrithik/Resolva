@@ -115,7 +115,7 @@ const Feature = () => {
         }}
       >
         <motion.div 
-          className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-8 bg-[#020617] p-4 rounded-xl border border-[#2A2A2A]"
+          className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-8 bg-black/40 p-4 rounded-xl border border-[#2A2A2A]"
         >
           <div className="flex flex-wrap gap-2 w-full sm:w-auto">
             <motion.button
@@ -173,7 +173,7 @@ const Feature = () => {
           className="bg-[#111111] rounded-2xl border border-[#2A2A2A] overflow-hidden"
         >
           <motion.div 
-            className="p-4 sm:p-6 border-b border-[#2A2A2A] bg-[#020617]"
+            className="p-4 sm:p-6 border-b border-[#2A2A2A] bg-black/40"
           >
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
               <motion.div
@@ -222,7 +222,7 @@ const Feature = () => {
           </div>
 
           <motion.div 
-            className="px-4 sm:px-6 py-3 sm:py-4 bg-[#020617] border-t border-[#2A2A2A]"
+            className="px-4 sm:px-6 py-3 sm:py-4 bg-black/40 border-t border-[#2A2A2A]"
           >
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
               <div className="flex items-center gap-4">

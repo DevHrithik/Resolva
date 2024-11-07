@@ -9,7 +9,7 @@ import {
   MapPin,
   ChevronDown
 } from 'lucide-react';
-
+import { motion } from 'framer-motion';
 interface NavigationItem {
   name: string;
   href: string;
@@ -105,7 +105,7 @@ const Footer: FC = () => {
   };
 
   return (
-    <footer className="bg-[#010207] border-t border-[#2A2A2A]">
+    <footer className="bg-black/40 border-t border-[#2A2A2A]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="border-b border-[#2A2A2A] py-12 hidden md:block">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
@@ -135,6 +135,7 @@ const Footer: FC = () => {
               <p className="text-gray-400 text-sm mb-6 max-w-md">
                 Building the future of software development. Our platform helps developers and teams ship better software, faster.
               </p>
+              <div className="flex flex-col gap-4 md:gap-8">
               <div className="flex gap-4">
                 <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
                   <Github size={20} />
@@ -145,6 +146,23 @@ const Footer: FC = () => {
                 <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
                   <Linkedin size={20} />
                 </a>
+              </div>
+              <div className="flex items-center gap-2">
+              <motion.span 
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [1, 0.8, 1]
+                }}
+                transition={{ 
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="w-2 h-2 bg-emerald-500 rounded-full"
+                
+              />
+              <span>Status</span>
+              </div>
               </div>
             </div>
 
