@@ -4,17 +4,30 @@ import { motion } from "framer-motion";
 
 const GlowingGridBackground = () => {
   const gridLines = Array.from({ length: 8 });
+<<<<<<< HEAD:components/Grid/GlowingGridBackground.tsx
   const [innerWidth, setinnerWidth] = useState(window.innerWidth);
   
+=======
+  const [innerWidth, setInnerWidth] = useState(0);
+
+>>>>>>> main:components/grid/glowing-grid-background.tsx
   useEffect(() => {
+    setInnerWidth(window.innerWidth);
+
     const handleResize = () => {
-      setinnerWidth(window.innerWidth);
+      setInnerWidth(window.innerWidth);
     };
+
     window.addEventListener("resize", handleResize);
+<<<<<<< HEAD:components/Grid/GlowingGridBackground.tsx
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [innerWidth]);
+=======
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+>>>>>>> main:components/grid/glowing-grid-background.tsx
 
   return (
     <>

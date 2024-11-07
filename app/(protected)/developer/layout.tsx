@@ -15,9 +15,9 @@ import { Bell, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { SignedIn, UserButton } from "@clerk/nextjs";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 const NAVLIST = [
   {
@@ -165,10 +165,14 @@ export default function RootLayout({
             <Settings className="h-4 w-4 text-white" />
             <span className="sr-only">Toggle settings</span>
           </Button>
+          <Button
+            className="rounded-full border border-zinc-800 hover:bg-zinc-900 bg-black"
+            variant="ghost"
+            onClick={() => signOut({ callbackUrl: "/" })}
+          >
+            <span className="text-white text-sm px-2">Sign out</span>
+          </Button>
           <Separator orientation="vertical" className="h-6" />
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
         </header>
         {children}
       </div>
