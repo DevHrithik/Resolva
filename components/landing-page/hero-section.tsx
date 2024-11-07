@@ -25,7 +25,7 @@ const Herosection = () => {
   }, []);
 
   return (
-    <div className="h-[55vh] md:h-screen flex flex-col md:flex-row justify-between items-center py-[30%] md:py-0">
+    <div className="h-[40vh] md:h-screen flex flex-col md:flex-row justify-between items-center py-[30%] md:py-0">
       <div
         ref={leftComponent}
         className="flex flex-col gap-4 text-center md:text-left"

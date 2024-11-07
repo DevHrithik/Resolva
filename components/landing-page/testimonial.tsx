@@ -1,146 +1,132 @@
-"use client";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Card, CardContent } from "@/components/ui/card"
 
-import React, { useRef } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent } from "@/components/ui/card";
-
-const testimonials = [
-  {
-    id: 1,
-    content:
-      "This product has revolutionized our workflow. The efficiency gains are remarkable.",
-    author: "Jane Doe",
-    role: "CEO, TechCorp",
-    avatar: "/placeholder.svg?height=40&width=40",
-  },
-  {
-    id: 2,
-    content:
-      "The attention to detail in the design is unparalleled. It's a joy to use daily.",
-    author: "John Smith",
-    role: "Lead Designer, CreativeCo",
-    avatar: "/placeholder.svg?height=40&width=40",
-  },
-  {
-    id: 3,
-    content:
-      "Customer support is exceptional. They've set a new standard in the industry.",
-    author: "Emily Brown",
-    role: "Operations Manager",
-    avatar: "/placeholder.svg?height=40&width=40",
-  },
-  {
-    id: 4,
-    content:
-      "This tool has become indispensable for our development team. Highly recommended.",
-    author: "Michael Johnson",
-    role: "CTO, InnovateNow",
-    avatar: "/placeholder.svg?height=40&width=40",
-  },
-];
-
-export default function ProfessionalMovingTestimonial() {
-  const containerRef = useRef<HTMLDivElement>(null);
+export default function Component() {
+  const testimonials = [
+    {
+      quote: "Stripe for payments. Vercel for deployments. Dub for links. As the cloud evolves, we abstract out common needs into reusable, high-performance infrastructure. Excited about Dub being the foundational missing piece of the puzzle.",
+      author: "Guillermo Rauch",
+      role: "CEO, Vercel",
+      avatar: "/placeholder.svg",
+      className: "lg:col-span-1 lg:row-span-1"
+    },
+    {
+      quote: "We wanted a tool that not only enables everyone at Prisma to create short links easily, but also provides more analytics for those links. Dub is the perfect solution for that.",
+      author: "Petra Donka",
+      role: "Head of Dev Connections, Prisma",
+      avatar: "/placeholder.svg",
+      className: "lg:col-start-1 lg:col-span-1 lg:row-start-2"
+    },
+    {
+      quote: "As a software comparison site, tracking and attributing link clicks to the apps we're recommending is critical. After using every link management platform on the market, we've found a home with Dub – it helps us make key decisions on where to focus our future content and growth efforts. We LOVE Dub.",
+      author: "Alex Bass",
+      role: "CEO, Efficient App",
+      avatar: "/placeholder.svg",
+      className: "lg:col-start-2 lg:col-span-1 lg:row-start-1 lg:-mt-12"
+    },
+    {
+      quote: "Dub has been a breath of fresh air in the link management space – with everything we needed and no unnecessary feature bloat.",
+      author: "Nick Parsons",
+      role: "Director of Marketing, Clerk",
+      avatar: "/placeholder.svg",
+      className: "lg:col-start-3 lg:col-span-1 lg:row-start-1"
+    },
+    {
+      quote: "We've been using Dub at Hashnode for almost a year now, and I must say it's a really intuitive & reliable tool for managing our short links. Great work!",
+      author: "Fazle Rahman",
+      role: "Co-founder, Hashnode",
+      avatar: "/placeholder.svg",
+      className: "lg:col-start-3 lg:col-span-1 lg:row-start-2"
+    }
+  ]
 
   return (
-    <div className="w-full h-[60vh] md:min-h-screen overflow-hidden py-16 flex items-center">
-      {/* <h2 className="text-xl md:text-3xl font-bold text-center mb-12 text-white tracking-tight">
-        What Our Clients Say
-      </h2> */}
-      <div
-        ref={containerRef}
-        className="flex"
-        style={{
-          animation: `moveLeft 25s linear infinite`,
-        }}
-      >
-        {[...testimonials].map((testimonial, index) => (
-          <Card
-            key={`${testimonial.id}-${index}`}
-            className="mx-4 w-96 flex-shrink-0 transition-all duration-500 hover:transform hover:scale-105 bg-[#020617] border-slate-800 hover:border-green-500 group"
-          >
-            <CardContent className="p-8 relative">
-              <p className="text-slate-300 mb-6 leading-relaxed">
-                {testimonial.content}
-              </p>
-              <div className="flex items-center mt-6 pt-6 border-t border-slate-700">
-                <Avatar className="h-12 w-12 mr-4 ring-2 ring-slate-700 group-hover:ring-green-400 transition-all duration-300">
-                  <AvatarImage
-                    src={testimonial.avatar}
-                    alt={testimonial.author}
-                  />
-                  <AvatarFallback className="bg-slate-700 text-slate-200">
-                    {testimonial.author
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </AvatarFallback>
-                </Avatar>
-                <div>
-                  <div className="font-semibold text-white group-hover:text-green-400 transition-colors duration-300">
-                    {testimonial.author}
+    <div className="relative min-h-screen px-4 py-12 md:py-20">
+      <div className="relative mx-auto max-w-7xl">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-4">
+            Trusted by Startups to
+            <span className="bg-gradient-to-r from-white/80 to-white/40 bg-clip-text text-transparent"> Enterprises</span>
+          </h2>
+          <p className="text-gray-400">
+            Join 64,279 customers who use our link infrastructure
+            <br />
+            to take their marketing efforts to the next level.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+          {testimonials.map((testimonial, i) => (
+            <Card 
+              key={i} 
+              className={`
+                group
+                bg-black/40
+                backdrop-blur-sm
+                border border-white/[0.07]
+                hover:border-white/[0.15]
+                transition-all
+                duration-500
+                hover:-translate-y-1
+                relative
+                overflow-hidden
+                ${testimonial.className}
+              `}
+            >
+              {/* Ambient glow effect */}
+              <div 
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  background: "radial-gradient(circle at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 70%)",
+                  filter: "blur(20px)"
+                }}
+              />
+
+              {/* Subtle border glow */}
+              <div 
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  boxShadow: "inset 0 0 15px rgba(255,255,255,0.05)"
+                }}
+              />
+
+              <CardContent className="relative p-8">
+                {/* Quote */}
+                <div className="space-y-6">
+                  <p className="text-[15px] leading-relaxed text-white/70">
+                    {testimonial.quote}
+                  </p>
+                  
+                  {/* Separator with glow */}
+                  <div className="relative h-px w-full">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
+                    <div 
+                      className="absolute inset-0 blur-sm"
+                      style={{
+                        background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent)"
+                      }}
+                    />
                   </div>
-                  <div className="text-sm text-slate-400">
-                    {testimonial.role}
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-      <div
-        ref={containerRef}
-        className="flex"
-        style={{
-          animation: `moveLeft 25s linear infinite`,
-        }}
-      >
-        {[...testimonials].map((testimonial, index) => (
-          <Card
-            key={`${testimonial.id}-${index}`}
-            className="mx-4 w-96 flex-shrink-0 transition-all duration-500 hover:transform hover:scale-105 bg-[#020617] border-slate-800 hover:border-green-500 group"
-          >
-            <CardContent className="p-8 relative">
-              <p className="text-slate-300 mb-6 leading-relaxed">
-                {testimonial.content}
-              </p>
-              <div className="flex items-center mt-6 pt-6 border-t border-slate-700">
-                <Avatar className="h-12 w-12 mr-4 ring-2 ring-slate-700 group-hover:ring-green-400 transition-all duration-300">
-                  <AvatarImage
-                    src={testimonial.avatar}
-                    alt={testimonial.author}
-                  />
-                  <AvatarFallback className="bg-slate-700 text-slate-200">
-                    {testimonial.author
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </AvatarFallback>
-                </Avatar>
-                <div>
-                  <div className="font-semibold text-white group-hover:text-green-400 transition-colors duration-300">
-                    {testimonial.author}
-                  </div>
-                  <div className="text-sm text-slate-400">
-                    {testimonial.role}
+                  
+                  {/* Author info */}
+                  <div className="flex items-center gap-4">
+                    <Avatar className="ring-1 ring-white/[0.07] ring-offset-2 ring-offset-black">
+                      <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
+                      <AvatarFallback className="bg-black text-white/50">
+                        {testimonial.author.split(' ').map(n => n[0]).join('')}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <div className="font-medium text-sm text-white/90">{testimonial.author}</div>
+                      <div className="text-sm text-white/50">{testimonial.role}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
-      <style jsx>{`
-        @keyframes moveLeft {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-100%);
-          }
-        }
-      `}</style>
     </div>
-  );
+  )
 }
