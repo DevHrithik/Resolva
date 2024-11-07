@@ -7,7 +7,7 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
@@ -15,7 +15,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import IssueCard from "@/components/developer/issue-card";
 
@@ -30,7 +30,7 @@ const issues = [
     bounty: 500,
     difficulty: "Medium",
     estimatedTime: "3-5 days",
-    status: "Open"
+    status: "Open",
   },
   {
     id: 2,
@@ -42,7 +42,7 @@ const issues = [
     bounty: 300,
     difficulty: "Easy",
     estimatedTime: "2-3 days",
-    status: "Closed"
+    status: "Closed",
   },
   {
     id: 3,
@@ -54,7 +54,7 @@ const issues = [
     bounty: 600,
     difficulty: "Medium",
     estimatedTime: "4-6 days",
-    status: "Open"
+    status: "Open",
   },
   {
     id: 4,
@@ -66,7 +66,7 @@ const issues = [
     bounty: 700,
     difficulty: "Hard",
     estimatedTime: "5-7 days",
-    status: "Open"
+    status: "Open",
   },
   {
     id: 5,
@@ -78,7 +78,7 @@ const issues = [
     bounty: 350,
     difficulty: "Medium",
     estimatedTime: "2-3 days",
-    status: "Closed"
+    status: "Closed",
   },
   {
     id: 6,
@@ -90,7 +90,7 @@ const issues = [
     bounty: 400,
     difficulty: "Medium",
     estimatedTime: "2-3 days",
-    status: "Open"
+    status: "Open",
   },
   {
     id: 7,
@@ -102,7 +102,7 @@ const issues = [
     bounty: 500,
     difficulty: "Medium",
     estimatedTime: "4-5 days",
-    status: "Open"
+    status: "Open",
   },
   {
     id: 8,
@@ -114,7 +114,7 @@ const issues = [
     bounty: 600,
     difficulty: "Hard",
     estimatedTime: "5-7 days",
-    status: "Closed"
+    status: "Closed",
   },
   {
     id: 9,
@@ -126,7 +126,7 @@ const issues = [
     bounty: 700,
     difficulty: "Hard",
     estimatedTime: "6-8 days",
-    status: "Open"
+    status: "Open",
   },
   {
     id: 10,
@@ -138,7 +138,7 @@ const issues = [
     bounty: 200,
     difficulty: "Easy",
     estimatedTime: "1-2 days",
-    status: "Closed"
+    status: "Closed",
   },
   {
     id: 11,
@@ -150,7 +150,7 @@ const issues = [
     bounty: 450,
     difficulty: "Medium",
     estimatedTime: "3-4 days",
-    status: "Open"
+    status: "Open",
   },
   {
     id: 12,
@@ -162,7 +162,7 @@ const issues = [
     bounty: 550,
     difficulty: "Medium",
     estimatedTime: "3-4 days",
-    status: "Closed"
+    status: "Closed",
   },
   {
     id: 13,
@@ -174,7 +174,7 @@ const issues = [
     bounty: 800,
     difficulty: "Hard",
     estimatedTime: "6-8 days",
-    status: "Open"
+    status: "Open",
   },
   {
     id: 14,
@@ -186,7 +186,7 @@ const issues = [
     bounty: 400,
     difficulty: "Medium",
     estimatedTime: "3-4 days",
-    status: "Closed"
+    status: "Closed",
   },
   {
     id: 15,
@@ -198,7 +198,7 @@ const issues = [
     bounty: 500,
     difficulty: "Medium",
     estimatedTime: "3-4 days",
-    status: "Open"
+    status: "Open",
   },
   {
     id: 16,
@@ -210,7 +210,7 @@ const issues = [
     bounty: 250,
     difficulty: "Easy",
     estimatedTime: "2-3 days",
-    status: "Closed"
+    status: "Closed",
   },
   {
     id: 17,
@@ -222,7 +222,7 @@ const issues = [
     bounty: 300,
     difficulty: "Easy",
     estimatedTime: "1-2 days",
-    status: "Open"
+    status: "Open",
   },
   {
     id: 18,
@@ -234,7 +234,7 @@ const issues = [
     bounty: 600,
     difficulty: "Medium",
     estimatedTime: "4-5 days",
-    status: "Closed"
+    status: "Closed",
   },
   {
     id: 19,
@@ -244,9 +244,9 @@ const issues = [
       "Implement automated tests for frontend components using Jest and React Testing Library.",
     techStack: ["Jest", "React Testing Library"],
     bounty: 450,
-    difficulty: "Medium",
+    difficulty: "Easy",
     estimatedTime: "3-4 days",
-    status: "Open"
+    status: "Open",
   },
   {
     id: 20,
@@ -258,8 +258,8 @@ const issues = [
     bounty: 500,
     difficulty: "Medium",
     estimatedTime: "4-5 days",
-    status: "Closed"
-  }
+    status: "Closed",
+  },
 ];
 
 export default function Component() {
@@ -267,14 +267,14 @@ export default function Component() {
   const [selectedTechStack, setSelectedTechStack] = useState<string[]>([]);
   const [selectedDifficulty, setSelectedDifficulty] = useState<string[]>([]);
 
-  const filteredIssues = issues.filter(issue => {
+  const filteredIssues = issues.filter((issue) => {
     const matchesSearch =
       issue.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       issue.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       issue.project.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesTechStack =
       selectedTechStack.length === 0 ||
-      issue.techStack.some(tech => selectedTechStack.includes(tech));
+      issue.techStack.some((tech) => selectedTechStack.includes(tech));
     const matchesDifficulty =
       selectedDifficulty.length === 0 ||
       selectedDifficulty.includes(issue.difficulty);
@@ -282,7 +282,7 @@ export default function Component() {
   });
 
   const allTechStacks = Array.from(
-    new Set(issues.flatMap(issue => issue.techStack))
+    new Set(issues.flatMap((issue) => issue.techStack))
   );
 
   return (
@@ -297,7 +297,7 @@ export default function Component() {
                 placeholder="Search issues..."
                 type="search"
                 value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
           </div>
@@ -313,20 +313,21 @@ export default function Component() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
-              {allTechStacks.map(tech =>
+              {allTechStacks.map((tech) => (
                 <DropdownMenuCheckboxItem
                   key={tech}
                   checked={selectedTechStack.includes(tech)}
-                  onCheckedChange={checked =>
+                  onCheckedChange={(checked) =>
                     setSelectedTechStack(
                       checked
                         ? [...selectedTechStack, tech]
-                        : selectedTechStack.filter(t => t !== tech)
-                    )}
+                        : selectedTechStack.filter((t) => t !== tech)
+                    )
+                  }
                 >
                   {tech}
                 </DropdownMenuCheckboxItem>
-              )}
+              ))}
             </DropdownMenuContent>
           </DropdownMenu>
           <DropdownMenu>
@@ -341,20 +342,21 @@ export default function Component() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
-              {["Easy", "Medium", "Hard"].map(difficulty =>
+              {["Easy", "Medium", "Hard"].map((difficulty) => (
                 <DropdownMenuCheckboxItem
                   key={difficulty}
                   checked={selectedDifficulty.includes(difficulty)}
-                  onCheckedChange={checked =>
+                  onCheckedChange={(checked) =>
                     setSelectedDifficulty(
                       checked
                         ? [...selectedDifficulty, difficulty]
-                        : selectedDifficulty.filter(d => d !== difficulty)
-                    )}
+                        : selectedDifficulty.filter((d) => d !== difficulty)
+                    )
+                  }
                 >
                   {difficulty}
                 </DropdownMenuCheckboxItem>
-              )}
+              ))}
             </DropdownMenuContent>
           </DropdownMenu>
           <Select>
@@ -372,11 +374,11 @@ export default function Component() {
           </Select>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredIssues.map((issue, index) =>
+          {filteredIssues.map((issue, index) => (
             <IssueCard key={index} issue={issue} />
-          )}
+          ))}
         </div>
-        {filteredIssues.length === 0 &&
+        {filteredIssues.length === 0 && (
           <div className="text-center py-12">
             <h3 className="text-lg font-medium text-gray-900">
               No issues found
@@ -385,7 +387,8 @@ export default function Component() {
               Try adjusting your search or filters to find what you&apos;re
               looking for.
             </p>
-          </div>}
+          </div>
+        )}
       </div>
     </div>
   );

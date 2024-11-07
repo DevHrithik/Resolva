@@ -1,19 +1,21 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import {
-  GitMerge,
+  Archive,
+  Bell,
+  DollarSign,
   Github,
-  Layout,
-  List,
+  GitPullRequest,
+  Grid,
   Menu,
+  Plus,
   Search,
-  Star,
-  Wallet,
+  Settings,
+  Tag,
+  Users,
 } from "lucide-react";
 import Link from "next/link";
-import { Bell, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -22,37 +24,42 @@ import { usePathname } from "next/navigation";
 const NAVLIST = [
   {
     name: "Dashboard",
-    href: "/developer",
-    icon: Layout,
+    href: "/maintainer",
+    icon: Grid,
   },
   {
-    name: "Explore",
-    href: "/developer/explore",
-    icon: Search,
+    name: "Create Issue",
+    href: "/maintainer/create",
+    icon: Plus,
   },
   {
-    name: "Billing",
-    href: "/developer/billing",
-    icon: Wallet,
+    name: "Manage Issues",
+    href: "/maintainer/issues",
+    icon: GitPullRequest,
   },
   {
-    name: "Watchlist",
-    href: "/developer/watchlist",
-    icon: Star,
+    name: "Bounties",
+    href: "/maintainer/bounties",
+    icon: DollarSign,
   },
   {
-    name: "Works",
-    href: "/developer/works",
-    icon: GitMerge,
+    name: "Developers",
+    href: "/maintainer/developers",
+    icon: Users,
   },
   {
-    name: "Leaderboard",
-    href: "/developer/leaderboard",
-    icon: List,
+    name: "Tags",
+    href: "/maintainer/tags",
+    icon: Tag,
+  },
+  {
+    name: "Archive",
+    href: "/maintainer/archive",
+    icon: Archive,
   },
 ];
 
-export default function RootLayout({
+export default function MaintainerLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -64,10 +71,6 @@ export default function RootLayout({
     return currentPage ? currentPage.name : "Dashboard";
   };
 
-  useEffect(() => {
-    console.log(PATH);
-  }, []);
-
   return (
     <div className="flex h-screen">
       <div className="hidden border-r border-[#ffffff20] bg-black lg:block w-[15%]">
@@ -75,17 +78,20 @@ export default function RootLayout({
           <div className="flex h-[60px] items-center px-6">
             <Link className="flex items-center gap-2 font-semibold" href="#">
               <Github className="h-6 w-6 text-white" />
-              <span>Resolva</span>
+              <span className="text-white">Resolva</span>
             </Link>
           </div>
+
           <div className="flex-1">
             <nav className="grid items-start px-4 text-sm font-medium">
               {NAVLIST.map((item, index) => (
                 <Link
                   key={index}
                   className={`${
-                    item.href === PATH ? "text-white" : "text-zinc-400"
-                  } flex items-center gap-3 rounded-lg px-3 py-2 hover:text-white transition-all`}
+                    item.href === PATH
+                      ? "text-white bg-zinc-800"
+                      : "text-zinc-400"
+                  } flex items-center gap-3 rounded-lg px-3 py-2 hover:text-white hover:bg-zinc-800 transition-all`}
                   href={item.href}
                 >
                   <item.icon className="h-4 w-4" />
@@ -94,11 +100,22 @@ export default function RootLayout({
               ))}
             </nav>
           </div>
-          <div className="mt-auto p-4">Subscription section</div>
+
+          <div className="mt-auto p-4 border-t border-[#ffffff20]">
+            <Link
+              href="/maintainer/settings"
+              className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all text-sm font-medium"
+            >
+              <Settings className="h-4 w-4" />
+              Settings
+            </Link>
+          </div>
         </div>
       </div>
+
       <div className="flex-1 h-screen flex flex-col">
         <header className="flex h-14 lg:h-[60px] py-4 items-center gap-4 border-b border-[#ffffff20] bg-black px-6">
+         
           <Sheet>
             <SheetTrigger asChild>
               <Button
@@ -111,14 +128,14 @@ export default function RootLayout({
               </Button>
             </SheetTrigger>
             <SheetContent
-              side={"left"}
+              side="left"
               className="bg-black text-white border-r border-[#ffffff20] max-w-fit"
             >
               <div className="flex h-full flex-col gap-2">
                 <div className="flex h-[60px] items-center justify-center mr-[10%]">
                   <Link
                     className="flex items-center gap-2 font-semibold"
-                    href="/developer"
+                    href="/maintainer"
                   >
                     <Github className="h-6 w-6 text-white" />
                     <span>Resolva</span>
@@ -129,7 +146,7 @@ export default function RootLayout({
                     {NAVLIST.map((item, index) => (
                       <Link
                         key={index}
-                        className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white transition-all"
+                        className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all"
                         href={item.href}
                       >
                         <item.icon className="h-4 w-4" />
@@ -138,17 +155,41 @@ export default function RootLayout({
                     ))}
                   </nav>
                 </div>
-                <div className="mt-auto p-4">Subscription</div>
+                <div className="mt-auto p-4 border-t border-[#ffffff20]">
+                  <Link
+                    href="/maintainer/settings"
+                    className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all text-sm font-medium"
+                  >
+                    <Settings className="h-4 w-4" />
+                    Settings
+                  </Link>
+                </div>
               </div>
             </SheetContent>
           </Sheet>
+
+   
           <div className="w-full flex-1">
-            <form>
-              <div className="relative">
-                <h2 className="font-bold text-xl">{getHeaderTitle()}</h2>
+            <div className="flex items-center justify-between">
+              <h2 className="font-bold text-xl text-white">
+                {getHeaderTitle()}
+              </h2>
+              <div className="hidden md:flex items-center gap-3">
+                <div className="relative">
+                  <input
+                    type="search"
+                    placeholder="Search issues..."
+                    className="w-64 px-4 py-2 rounded-lg bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <Search
+                    className="absolute right-3 top-2.5 text-zinc-400"
+                    size={18}
+                  />
+                </div>
               </div>
-            </form>
+            </div>
           </div>
+
           <Button
             className="rounded-full hover:bg-zinc-800 border border-zinc-800 w-8 h-8 bg-black"
             size="icon"
@@ -165,12 +206,13 @@ export default function RootLayout({
             <Settings className="h-4 w-4 text-white" />
             <span className="sr-only">Toggle settings</span>
           </Button>
-          <Separator orientation="vertical" className="h-6" />
+          <Separator orientation="vertical" className="h-6 bg-zinc-800" />
           <SignedIn>
             <UserButton />
           </SignedIn>
         </header>
-        {children}
+
+        <main className="flex-1 overflow-auto bg-zinc-900">{children}</main>
       </div>
     </div>
   );

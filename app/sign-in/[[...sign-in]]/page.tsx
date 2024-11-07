@@ -11,7 +11,7 @@ export default function Page() {
         className="absolute top-5 left-10 text-white cursor-pointer"
         onClick={() => router.push("/")}
       />
-      <SignIn redirectUrl="/home"/>
+      <SignIn redirectUrl="/home" />
     </div>
   );
 }

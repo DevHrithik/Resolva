@@ -1,10 +1,8 @@
 "use client";
-
 import GlowingGridBackground from "@/components/Grid/GlowingGridBackground";
 import Feature from "@/components/landing-page/feature-section";
 import Footer from "@/components/landing-page/footer";
 import Herosection from "@/components/landing-page/hero-section";
-
 import Pricing from "@/components/landing-page/pricing";
 import Testimonial from "@/components/landing-page/testimonial";
 import Navbar from "@/components/navbar";
