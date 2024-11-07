@@ -1,8 +1,20 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Feature = () => {
   const [activeTab, setActiveTab] = useState("developers");
+  const [formattedDate, setFormattedDate] = useState("");
+
+  useEffect(() => {
+    // Format date on client-side only
+    setFormattedDate(
+      new Date().toLocaleDateString("en-US", {
+        month: "2-digit",
+        day: "2-digit",
+        year: "numeric",
+      })
+    );
+  }, []);
 
   return (
     <div className="min-h-screen w-full">
@@ -35,7 +47,8 @@ const Feature = () => {
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
               <span className="text-sm font-medium text-gray-300">
-                {activeTab === "developers" ? "Development" : "Maintenance"} Mode
+                {activeTab === "developers" ? "Development" : "Maintenance"}{" "}
+                Mode
               </span>
             </div>
           </div>
@@ -59,9 +72,11 @@ const Feature = () => {
               </div>
 
               <div className="text-left sm:text-right">
-                <div className="text-xs sm:text-sm text-gray-400">Last Updated</div>
+                <div className="text-xs sm:text-sm text-gray-400">
+                  Last Updated
+                </div>
                 <div className="text-xs sm:text-sm font-medium text-gray-200">
-                  {new Date().toLocaleDateString()}
+                  {formattedDate}
                 </div>
               </div>
             </div>
