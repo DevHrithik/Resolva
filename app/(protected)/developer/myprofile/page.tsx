@@ -1,33 +1,30 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { format } from "date-fns";
 import axios from "axios";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  CalendarDays,
-  Mail,
   User,
   Calendar,
   CheckCircle2,
   Loader2,
   AlertCircle,
   Briefcase,
-  Link as LinkIcon,
+
   Twitter,
   Globe,
   FileEdit,
   Code,
   X,
+  Linkedin 
 } from "lucide-react";
-import { log } from "console";
+
 
 interface TechStack {
   id: string;
@@ -97,7 +94,6 @@ export default function UserProfilePage() {
     setIsEditing(true);
   };
 
-  
   const handleSave = async () => {
     try {
       const formattedData = {
@@ -301,14 +297,13 @@ export default function UserProfilePage() {
                   </div>
                   <div className="flex gap-2 flex-wrap">
                     {editedData.techStacks?.map((tech, index) => (
-                      <Badge
-                        variant="secondary"
-                        className={
-                          techStackBadge[
-                            Math.floor(Math.random() * techStackBadge.length)
-                          ]
-                        }
-                      >
+                     <Badge
+                     key={tech.id}
+                     variant="secondary"
+                     className={`${
+                       techStackBadge[index % techStackBadge.length]
+                     } px-2 py-1 text-sm`}
+                   >
                         {tech.name}
                         <X
                           className="w-3 h-3 cursor-pointer"
@@ -389,8 +384,8 @@ export default function UserProfilePage() {
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors duration-200"
                       >
-                        <LinkIcon className="w-4 h-4" />
-                        LinkedIn Profile
+                        <Linkedin className="w-4 h-4" />
+                        LinkedIn
                       </a>
                     )}
                     {userData.twitterHandle && (

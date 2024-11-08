@@ -35,29 +35,27 @@ export async function GET() {
         techStacks: true,
         onboarded: true,
 
-
         // Activity relations with counts
         issuesCreated: {
           select: {
-            _count: true
-          }
+            _count: true,
+          },
         },
         issuesSolved: {
           select: {
-            _count: true
-          }
+            _count: true,
+          },
         },
         maintainedRepos: {
           select: {
-            _count: true
-          }
+            _count: true,
+          },
         },
 
         // Timestamps
         createdAt: true,
         updatedAt: true,
       },
-
     });
 
     if (!user) {
@@ -71,9 +69,6 @@ export async function GET() {
   }
 }
 
-
-
-
 export async function POST(req: Request) {
   console.log("Req", req);
 
@@ -83,7 +78,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Parse request body
     let data;
     try {
       data = await req.json();
@@ -101,10 +95,8 @@ export async function POST(req: Request) {
       );
     }
 
-    // Validate techStacks and other fields
     const techStacks = Array.isArray(data.techStacks) ? data.techStacks : [];
 
-    // Fetch current techStacks from the database
     const user = await prisma.user.findUnique({
       where: { email: session.user.email },
       select: {
@@ -115,19 +107,14 @@ export async function POST(req: Request) {
     });
 
     if (!user) {
-      return NextResponse.json(
-        { error: "User not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    // Find removed techStacks
     const existingTechStacks = user.techStacks.map((stack) => stack.name);
     const removedTechStacks = existingTechStacks.filter(
       (stack) => !techStacks.includes(stack)
     );
 
-    // Start by removing the tech stacks that are no longer in the updated list
     await prisma.user.update({
       where: { email: session.user.email },
       data: {
@@ -139,7 +126,6 @@ export async function POST(req: Request) {
       },
     });
 
-    // Now connect or create the new techStacks
     const updatedUser = await prisma.user.update({
       where: { email: session.user.email },
       data: {
@@ -157,12 +143,12 @@ export async function POST(req: Request) {
       where: {
         NOT: {
           users: {
-            some: {}, // Check if there are still any associated users
+            some: {},
           },
         },
       },
     });
-    console.log("Updated user:", updatedUser);
+    // console.log("Updated user:", updatedUser);
 
     return NextResponse.json({
       success: true,
@@ -176,4 +162,3 @@ export async function POST(req: Request) {
     );
   }
 }
-
