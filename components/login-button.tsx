@@ -35,13 +35,13 @@ export function GithubLoginButton({
       variant="outline"
       onClick={handleLogin}
       disabled={isLoading}
-      className={`w-full flex items-center justify-center gap-2 ${className}`}
+      className={`flex w-full items-center justify-center gap-2 ${className}`}
       {...props}
     >
       {isLoading ? (
-        <Loader2 className="h-4 w-4 animate-spin" />
+        <Loader2 className="size-4 animate-spin" />
       ) : (
-        <Github className="h-4 w-4" />
+        <Github className="size-4" />
       )}
       {showGithubText && <span>Sign in with GitHub</span>}
     </Button>

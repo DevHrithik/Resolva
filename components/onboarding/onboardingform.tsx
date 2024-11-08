@@ -245,7 +245,7 @@ export default function OnboardingForm() {
                 </Select>
               </FormControl>
               {field.value?.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-2">
+                <div className="mt-2 flex flex-wrap gap-2">
                   {field.value.map((stack) => (
                     <Button
                       key={stack}

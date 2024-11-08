@@ -2,21 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-gradient-to-t from-[#0C1222] to-[#0D253D]; 
-  font-family: Arial, Helvetica, sans-serif;
-  min-height: 100vh; 
-  background-color: var(--background);
-  color: white;
-}
-
-.bg-dark-to-light {
-  @apply bg-gradient-to-b from-[#0C1222] to-[#102f4d];
-}
-.bg-light-to-dark {
-  @apply bg-gradient-to-t from-[#0C1222] to-[#102f4d];
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -44,7 +29,16 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+
+    /* Add sidebar variables */
+    --sidebar: 0 0% 100%;
+    --sidebar-foreground: 240 10% 3.9%;
+    --sidebar-border: 240 5.9% 90%;
+    --sidebar-accent: 240 5.9% 90%;
+    --sidebar-accent-foreground: 240 10% 3.9%;
+    --sidebar-ring: 240 5% 64.9%;
   }
+
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
@@ -70,25 +64,45 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-  }
-}
 
-@layer base {
+    /* Add dark mode sidebar variables */
+    --sidebar: 240 10% 3.9%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-ring: 240 4.9% 83.9%;
+  }
+
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
+
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    background-image: linear-gradient(to top, #0C1222, #0D253D);
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
   }
 }
 
-body::-webkit-scrollbar {
-  display: none;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.scroll-none::-webkit-scrollbar {
-  display: none;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+@layer utilities {
+  .bg-dark-to-light {
+    background: linear-gradient(to bottom, #0C1222, #102f4d);
+  }
+
+  .bg-light-to-dark {
+    background: linear-gradient(to top, #0C1222, #102f4d);
+  }
+
+  .scroll-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scroll-none::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+  }
 }
