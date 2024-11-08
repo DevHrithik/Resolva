@@ -28,7 +28,7 @@ const Navbar = () => {
       <div className="flex items-center gap-6 text-sm font-semibold">
         <Link
           href="/login"
-          className="px-3 py-2 bg-green-600 text-white  shadow-lg rounded-md"
+          className="px-3 py-2 bg-[#00E599] text-white  shadow-lg rounded-md hover:bg-[#00E5BF]"
         >
           Sign In
         </Link>
