@@ -8,6 +8,8 @@ import {
   Menu,
   Search,
   Star,
+  User2,
+  Users,
   Wallet,
 } from "lucide-react";
 import Link from "next/link";
@@ -49,6 +51,11 @@ const NAVLIST = [
     name: "Leaderboard",
     href: "/developer/leaderboard",
     icon: List,
+  },
+  {
+    name: "My Profile",
+    href: "/developer/myprofile",
+    icon: User2,
   },
 ];
 
