@@ -159,7 +159,7 @@ export default function UserProfilePage() {
   }
 
   return (
-    <div className="h-screen bg-black p-4 sm:p-6 md:p-8 ">
+    <div className="flex-1 bg-black p-4 sm:p-6 md:p-8 ">
       <div className="max-w-7xl mx-auto">
         <main className="space-y-8">
           <Card className="bg-black/50 border-zinc-800">
@@ -177,7 +177,7 @@ export default function UserProfilePage() {
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <CardTitle className="text-3xl sm:text-4xl font-bold text-gray-100 mb-2">
+                    <CardTitle className="text-xl sm:text-4xl font-bold text-gray-100 mb-2">
                       {userData.fullName || userData.name}
                     </CardTitle>
                     <p className="text-gray-300 text-lg">{userData.email}</p>
