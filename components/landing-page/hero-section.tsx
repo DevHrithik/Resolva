@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { gsap } from "gsap"
-import { HoverBorderGradient } from "../ui/hover-border-gradient"
+
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const headingRef = useRef<HTMLHeadingElement>(null)

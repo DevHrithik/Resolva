@@ -9,22 +9,23 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+
 import {
-  User,
   Calendar,
   CheckCircle2,
   Loader2,
   AlertCircle,
   Briefcase,
-
   Twitter,
   Globe,
   FileEdit,
   Code,
   X,
-  Linkedin 
+  Linkedin,
+  Github,
 } from "lucide-react";
-
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 interface TechStack {
   id: string;
@@ -74,6 +75,7 @@ export default function UserProfilePage() {
   const [error, setError] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editedData, setEditedData] = useState<Partial<UserData>>({});
+  const [isLoading, setisLoading] = useState<Boolean>(false)
   const fetchUserData = async () => {
     try {
       const response = await axios.get<UserData>("/api/user");
@@ -86,6 +88,7 @@ export default function UserProfilePage() {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     fetchUserData();
   }, []);
@@ -96,6 +99,7 @@ export default function UserProfilePage() {
 
   const handleSave = async () => {
     try {
+      setisLoading(true);
       const formattedData = {
         ...editedData,
         techStacks: editedData.techStacks?.map((tech) => tech.name),
@@ -103,11 +107,13 @@ export default function UserProfilePage() {
 
       const res = await axios.post("/api/user", formattedData);
       setUserData(res.data.user);
-      setIsEditing(false);
       await fetchUserData();
+      setIsEditing(false);
     } catch (err) {
       console.error("Error updating user data:", err);
       setError("Failed to update profile");
+    }finally{
+      setisLoading(false);
     }
   };
 
@@ -122,7 +128,6 @@ export default function UserProfilePage() {
 
   const handleTechStackAdd = (techName: string) => {
     if (techName && Array.isArray(editedData.techStacks)) {
-      // Make sure editedData.techStacks is an array
       const existingTech = editedData.techStacks.find(
         (tech) => tech.name === techName
       );
@@ -154,79 +159,78 @@ export default function UserProfilePage() {
   }
 
   return (
-    <div className="h-full bg-black text-gray-100 p-8 overflow-y-hidden">
-      <div className="max-w-5xl mx-auto overflow-hidden">
+    <div className="h-screen bg-black p-4 sm:p-6 md:p-8 ">
+      <div className="max-w-7xl mx-auto">
         <main className="space-y-8">
-          <Card className="bg-gradient-to-br from-zinc-900 to-zinc-950 border-zinc-800 text-zinc-100">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-2xl font-bold text-gray-100">
-                Personal Information
-              </CardTitle>
-              {!isEditing && (
-                <Button
-                  onClick={handleEdit}
-                  variant="outline"
-                  size="sm"
-                  className="bg-gray-700 text-gray-100 border-gray-600 hover:bg-gray-600"
-                >
-                  <FileEdit className="w-4 h-4 mr-2" />
-                  Edit Profile
-                </Button>
-              )}
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-col md:flex-row gap-8">
-                <Avatar className="w-32 h-32 border-2 border-gray-700">
-                  <AvatarImage src={userData.image} alt={userData.name} />
-                  <AvatarFallback className="bg-gray-700 text-gray-100">
-                    {userData.name
-                      ?.split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="flex-1 space-y-4">
+          <Card className="bg-black/50 border-zinc-800">
+            <CardHeader className="relative pb-0">
+              <div className="absolute  opacity-20"></div>
+              <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-4 sm:space-y-0 pb-6">
+                <div className="flex items-center space-x-4">
+                  <Avatar className="w-24 h-24 sm:w-32 sm:h-32 border-4 border-gray-700 shadow-lg">
+                    <AvatarImage src={userData.image} alt={userData.name} />
+                    <AvatarFallback className="bg-gray-700 text-gray-100 text-2xl font-bold">
+                      {userData.name
+                        ?.split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </AvatarFallback>
+                  </Avatar>
                   <div>
-                    <h2 className="text-xl font-semibold text-gray-100">
+                    <CardTitle className="text-3xl sm:text-4xl font-bold text-gray-100 mb-2">
                       {userData.fullName || userData.name}
-                    </h2>
-                    <p className="text-gray-400">{userData.email}</p>
-                  </div>
-                  <Badge
-                    variant="secondary"
-                    className={`${
-                      userData.onboarded
-                        ? "bg-green-900 text-green-100"
-                        : "bg-yellow-900 text-yellow-100"
-                    } px-3 py-1 text-sm font-medium`}
-                  >
-                    <CheckCircle2 className="w-4 h-4 mr-1 inline-block" />
-                    {userData.onboarded ? "Onboarded" : "Pending Onboarding"}
-                  </Badge>
-                  {userData.bio && !isEditing && (
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-100 mb-2">
-                        Bio
-                      </h3>
-                      <p className="text-gray-400">{userData.bio}</p>
+                    </CardTitle>
+                    <p className="text-gray-300 text-lg">{userData.email}</p>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      <Badge
+                        variant="secondary"
+                        className={`${
+                          userData.onboarded
+                            ? "bg-green-600 text-green-100"
+                            : "bg-yellow-600 text-yellow-100"
+                        } px-3 py-1 text-sm font-medium`}
+                      >
+                        <CheckCircle2 className="w-4 h-4 mr-1 inline-block" />
+                        {userData.onboarded
+                          ? "Onboarded"
+                          : "Pending Onboarding"}
+                      </Badge>
+                      {userData.roles?.map((role) => (
+                        <Badge
+                          key={role}
+                          variant="secondary"
+                          className="bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20"
+                        >
+                          {role}
+                        </Badge>
+                      ))}
                     </div>
-                  )}
+                  </div>
                 </div>
+                {!isEditing && (
+                  <Button
+                    size="sm"
+                    className="text-[15px] font-medium px-4 py-5 rounded-md bg-[#00E599] hover:bg-[#00E5BF]"
+                    onClick={handleEdit}
+                  >
+                    Edit Porfile
+                  </Button>
+                )}
               </div>
+            </CardHeader>
+            <CardContent className="pt-6 space-y-6">
+              {userData.bio && !isEditing && (
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-100 mb-2">
+                    Bio
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed">
+                    {userData.bio}
+                  </p>
+                </div>
+              )}
               {isEditing && (
-                <div className="mt-8 space-y-4">
-                  {/* <div>
-                    <Label htmlFor="bio" className="text-gray-300">
-                      Bio
-                    </Label>
-                    <Input
-                      id="bio"
-                      name="bio"
-                      value={editedData.bio || ""}
-                      onChange={handleInputChange}
-                      className="mt-1 bg-gray-700 text-gray-100 border-gray-600"
-                    />
-                  </div> */}
+                <div className="space-y-4">
                   <div>
                     <Label htmlFor="twitterHandle" className="text-gray-300">
                       Twitter Handle
@@ -251,18 +255,6 @@ export default function UserProfilePage() {
                       className="mt-1 bg-gray-700 text-gray-100 border-gray-600"
                     />
                   </div>
-                  {/* <div>
-                    <Label htmlFor="personalWebsite" className="text-gray-300">
-                      Personal Website
-                    </Label>
-                    <Input
-                      id="personalWebsite"
-                      name="personalWebsite"
-                      value={editedData.personalWebsite || ""}
-                      onChange={handleInputChange}
-                      className="mt-1 bg-gray-700 text-gray-100 border-gray-600"
-                    />
-                  </div> */}
                   <div>
                     <Label htmlFor="newTechStack" className="text-gray-300">
                       Add Tech Stack
@@ -289,7 +281,7 @@ export default function UserProfilePage() {
                           handleTechStackAdd(input.value);
                           input.value = "";
                         }}
-                        className="bg-blue-600 text-white hover:bg-blue-700"
+                        className="bg-green-600 text-white hover:bg-green-700 transition-colors duration-200"
                       >
                         Add
                       </Button>
@@ -297,16 +289,16 @@ export default function UserProfilePage() {
                   </div>
                   <div className="flex gap-2 flex-wrap">
                     {editedData.techStacks?.map((tech, index) => (
-                     <Badge
-                     key={tech.id}
-                     variant="secondary"
-                     className={`${
-                       techStackBadge[index % techStackBadge.length]
-                     } px-2 py-1 text-sm`}
-                   >
+                      <Badge
+                        key={tech.id}
+                        variant="secondary"
+                        className={`${
+                          techStackBadge[index % techStackBadge.length]
+                        } px-2 py-1 text-sm`}
+                      >
                         {tech.name}
                         <X
-                          className="w-3 h-3 cursor-pointer"
+                          className="w-3 h-3 ml-1 cursor-pointer"
                           onClick={() => handleTechStackRemove(tech.id)}
                         />
                       </Badge>
@@ -315,14 +307,17 @@ export default function UserProfilePage() {
                   <div className="flex gap-2 mt-4">
                     <Button
                       onClick={handleSave}
-                      className="bg-blue-600 text-white hover:bg-blue-700"
+                      className="bg-green-600 text-white hover:bg-green-700 transition-colors duration-200"
+                      disabled={Boolean(isLoading)}
                     >
+                     {isLoading && <Loader2 className="animate-spin" />} 
                       Save Changes
                     </Button>
                     <Button
                       onClick={handleCancel}
                       variant="outline"
-                      className="bg-gray-700 text-gray-100 border-gray-600 hover:bg-gray-600"
+                      className="bg-gray-700 text-gray-100 border-gray-600 hover:bg-gray-600 transition-colors duration-200"
+                      disabled={Boolean(isLoading)}
                     >
                       Cancel
                     </Button>
@@ -333,27 +328,9 @@ export default function UserProfilePage() {
           </Card>
 
           {!isEditing && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <ProfileSection
-                icon={<User className="w-5 h-5" />}
-                title="Roles"
-                content={
-                  <div className="flex flex-wrap gap-2">
-                    {userData.roles?.map((role) => (
-                      <Badge
-                        key={role}
-                        variant="secondary"
-                        className="bg-gray-700 text-gray-100 px-2 py-1 text-sm"
-                      >
-                        {role}
-                      </Badge>
-                    ))}
-                  </div>
-                }
-              />
-
-              <ProfileSection
-                icon={<Code className="w-5 h-5" />}
+                icon={<Code className="w-6 h-6 text-green-400" />}
                 title="Tech Stack"
                 content={
                   <div className="flex flex-wrap gap-2">
@@ -373,18 +350,18 @@ export default function UserProfilePage() {
               />
 
               <ProfileSection
-                icon={<Briefcase className="w-5 h-5" />}
+                icon={<Briefcase className="w-6 h-6 text-purple-400" />}
                 title="Social Links"
                 content={
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     {userData.linkedinUrl && (
                       <a
                         href={userData.linkedinUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                        className="flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors duration-200"
                       >
-                        <Linkedin className="w-4 h-4" />
+                        <Linkedin className="w-5 h-5" />
                         LinkedIn
                       </a>
                     )}
@@ -393,9 +370,9 @@ export default function UserProfilePage() {
                         href={`https://twitter.com/${userData.twitterHandle}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                        className="flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors duration-200"
                       >
-                        <Twitter className="w-4 h-4" />@{userData.twitterHandle}
+                        <Twitter className="w-5 h-5" />@{userData.twitterHandle}
                       </a>
                     )}
                     {userData.personalWebsite && (
@@ -403,10 +380,21 @@ export default function UserProfilePage() {
                         href={userData.personalWebsite}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                        className="flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors duration-200"
                       >
-                        <Globe className="w-4 h-4" />
+                        <Globe className="w-5 h-5" />
                         Personal Website
+                      </a>
+                    )}
+                    {userData.githubUsername && (
+                      <a
+                        href={`https://github.com/${userData.githubUsername}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors duration-200"
+                      >
+                        <Github className="w-5 h-5" />
+                        GitHub
                       </a>
                     )}
                   </div>
@@ -414,61 +402,33 @@ export default function UserProfilePage() {
               />
 
               <ProfileSection
-                icon={<Calendar className="w-5 h-5" />}
+                icon={<Calendar className="w-6 h-6 text-green-400" />}
                 title="Activity Stats"
                 content={
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-400">Issues Created:</span>
-                      <Badge
-                        variant="outline"
-                        className="bg-gray-700 text-gray-100 px-2 py-1"
-                      >
-                        {userData.issuesCreated?.length}
-                      </Badge>
+                      <span className="text-gray-300">Issues Created:</span>
+                      <HoverBorderGradient className="w-[30px] h-[30px] flex items-center justify-center">
+                        {userData.issuesCreated?.length ?? 0}
+                      </HoverBorderGradient>
                     </div>
+                    <Separator className="bg-gray-700" />
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-400">Issues Solved:</span>
-                      <Badge
-                        variant="outline"
-                        className="bg-gray-700 text-gray-100 px-2 py-1"
-                      >
-                        {userData.issuesSolved?.length}
-                      </Badge>
+                      <span className="text-gray-300">Issues Solved:</span>
+                      <HoverBorderGradient className="w-[30px] h-[30px] flex items-center justify-center">
+                        {userData.issuesSolved?.length ?? 0}
+                      </HoverBorderGradient>
                     </div>
+                    <Separator className="bg-gray-700" />
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-400">Repos Maintained:</span>
-                      <Badge
-                        variant="outline"
-                        className="bg-gray-700 text-gray-100 px-2 py-1"
-                      >
-                        {userData.maintainedRepos?.length}
-                      </Badge>
+                      <span className="text-gray-300">Repos Maintained:</span>
+                      <HoverBorderGradient className="w-[30px] h-[30px] flex items-center justify-center">
+                        {userData.maintainedRepos?.length ?? 0}
+                      </HoverBorderGradient>
                     </div>
                   </div>
                 }
               />
-
-              {/* <ProfileSection
-                icon={<CalendarDays className="w-5 h-5" />}
-                title="Dates"
-                content={
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-400">Member Since:</span>
-                      <span className="text-gray-100 font-medium">
-                        {format(new Date(userData.createdAt), "MMMM dd, yyyy")}
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-400">Last Updated:</span>
-                      <span className="text-gray-100 font-medium">
-                        {format(new Date(userData.updatedAt), "MMMM dd, yyyy")}
-                      </span>
-                    </div>
-                  </div>
-                }
-              /> */}
             </div>
           )}
         </main>
@@ -487,9 +447,9 @@ function ProfileSection({
   content: React.ReactNode;
 }) {
   return (
-    <Card className="bg-gradient-to-br from-zinc-900 to-zinc-950 border-zinc-800 text-zinc-100">
+    <Card className="bg-black/10 border-zinc-800 overflow-hidden shadow-lg">
       <CardHeader>
-        <CardTitle className="text-lg font-semibold flex items-center gap-2 text-gray-100">
+        <CardTitle className="text-xl font-semibold flex items-center gap-2 text-gray-100">
           {icon}
           {title}
         </CardTitle>
@@ -501,10 +461,10 @@ function ProfileSection({
 
 function LoadingState() {
   return (
-    <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 flex items-center justify-center">
       <div className="flex flex-col items-center gap-4">
-        <Loader2 className="h-10 w-10 animate-spin text-blue-400" />
-        <span className="text-lg font-medium text-gray-400">
+        <Loader2 className="h-12 w-12 animate-spin text-green-400" />
+        <span className="text-xl font-medium text-gray-300">
           Loading profile...
         </span>
       </div>
@@ -514,13 +474,13 @@ function LoadingState() {
 
 function ErrorState({ error }: { error: string | null }) {
   return (
-    <div className="min-h-screen bg-gray-900 p-8 flex items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 p-8 flex items-center justify-center">
       <Alert
         variant="destructive"
         className="max-w-md bg-red-900 border-red-800"
       >
-        <AlertCircle className="h-5 w-5" />
-        <AlertDescription className="text-base text-red-100">
+        <AlertCircle className="h-6 w-6" />
+        <AlertDescription className="text-lg text-red-100">
           {error || "Unable to load profile data"}
         </AlertDescription>
       </Alert>
