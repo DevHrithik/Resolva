@@ -38,11 +38,11 @@ interface Issue {
 
 export default function IssueCard({ issue }: { issue: Issue }) {
   return (
-    <Card className="w-full max-w-xl bg-gradient-to-br from-zinc-900 to-zinc-950 border-zinc-800 text-zinc-100">
+    <Card className="w-full max-w-xl border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-950 text-zinc-100">
       <CardHeader className="space-y-4">
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1.5">
-            <h3 className="font-semibold text-xl leading-tight text-zinc-50">
+            <h3 className="text-xl font-semibold leading-tight text-zinc-50">
               {issue.title}
             </h3>
             <p className="text-sm text-zinc-400">
@@ -52,15 +52,15 @@ export default function IssueCard({ issue }: { issue: Issue }) {
           <div
             className={`${issue.status === "Closed"
               ? "bg-zinc-800 opacity-80 "
-              : "bg-[#238636]"} flex items-center font-semibold gap-1 text-xs px-[10px] py-[5px] rounded-full`}
+              : "bg-[#238636]"} flex items-center gap-1 rounded-full px-[10px] py-[5px] text-xs font-semibold`}
           >
             {issue.status === "Closed"
-              ? <Check className="w-4 h-4" />
-              : <CircleDot className="w-4 h-4" />}
+              ? <Check className="size-4" />
+              : <CircleDot className="size-4" />}
             {issue.status}
           </div>
         </div>
-        <p className="text-sm text-zinc-400 leading-relaxed">
+        <p className="text-sm leading-relaxed text-zinc-400">
           {issue.description}
         </p>
       </CardHeader>
@@ -83,18 +83,18 @@ export default function IssueCard({ issue }: { issue: Issue }) {
 
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
-            <Code2 className="w-4 h-4 text-zinc-400" />
+            <Code2 className="size-4 text-zinc-400" />
             <span className="text-sm font-medium text-zinc-300">Medium</span>
           </div>
           <div className="flex items-center gap-2">
-            <Clock className="w-4 h-4 text-zinc-400" />
+            <Clock className="size-4 text-zinc-400" />
             <span className="text-sm font-medium text-zinc-300">3-5 days</span>
           </div>
         </div>
       </CardContent>
       <CardFooter className="flex items-center justify-between border-t border-zinc-800 pt-6">
         <div className="flex items-center gap-2">
-          <DollarSign className="w-5 h-5 text-emerald-500" />
+          <DollarSign className="size-5 text-emerald-500" />
           <span className="text-lg font-semibold text-emerald-500">500</span>
         </div>
         <Button className="bg-primary hover:bg-primary/90">Solve Issue</Button>

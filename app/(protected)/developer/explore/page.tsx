@@ -286,14 +286,14 @@ export default function Component() {
   );
 
   return (
-    <div className="flex-1 overflow-y-auto bg-black py-8 scroll-none">
+    <div className="scroll-none flex-1 overflow-y-auto bg-black py-8">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
+        <div className="mb-8 flex flex-col gap-4 md:flex-row">
           <div className="flex-1">
             <div className="relative">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 " />
+              <Search className="absolute left-2.5 top-2.5 size-4 text-gray-500 " />
               <Input
-                className="pl-8 border border-[#ffffff28]"
+                className="border border-[#ffffff28] pl-8"
                 placeholder="Search issues..."
                 type="search"
                 value={searchQuery}
@@ -305,11 +305,11 @@ export default function Component() {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="outline"
-                className="w-full md:w-auto bg-black border border-[#ffffff28] hover:bg-zinc-900 hover:border-transparent transition-all ease-linear duration-200 hover:text-white"
+                className="w-full border border-[#ffffff28] bg-black transition-all duration-200 ease-linear hover:border-transparent hover:bg-zinc-900 hover:text-white md:w-auto"
               >
-                <Filter className="mr-2 h-4 w-4" />
+                <Filter className="mr-2 size-4" />
                 Tech Stack
-                <ChevronDown className="ml-2 h-4 w-4" />
+                <ChevronDown className="ml-2 size-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
@@ -334,11 +334,11 @@ export default function Component() {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="outline"
-                className="w-full md:w-auto bg-black border border-[#ffffff28] hover:bg-zinc-900 hover:border-transparent transition-all ease-linear duration-200 hover:text-white"
+                className="w-full border border-[#ffffff28] bg-black transition-all duration-200 ease-linear hover:border-transparent hover:bg-zinc-900 hover:text-white md:w-auto"
               >
-                <Filter className="mr-2 h-4 w-4" />
+                <Filter className="mr-2 size-4" />
                 Difficulty
-                <ChevronDown className="ml-2 h-4 w-4" />
+                <ChevronDown className="ml-2 size-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
@@ -379,7 +379,7 @@ export default function Component() {
           ))}
         </div>
         {filteredIssues.length === 0 && (
-          <div className="text-center py-12">
+          <div className="py-12 text-center">
             <h3 className="text-lg font-medium text-gray-900">
               No issues found
             </h3>

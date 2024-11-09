@@ -1,0 +1,7 @@
+echo "Running checks before commit"
+
+pnpm run lint:fix
+
+pnpm run lint
+
+pnpm run typecheck

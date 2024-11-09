@@ -20,7 +20,7 @@ const GlowingGridBackground = () => {
   return (
     <>
       <div
-        className="relative w-full h-full overflow-hidden"
+        className="relative size-full overflow-hidden"
         style={{
           background: "linear-gradient(to right bottom, #000000, #0A0A0A)",
         }}
@@ -100,7 +100,7 @@ const GlowingGridBackground = () => {
           <React.Fragment key={`vertical-${index}`}>
             {/* Primary thin line */}
             <motion.div
-              className="absolute w-px h-[200px]"
+              className="absolute h-[200px] w-px"
               style={{
                 left: `${index * 100 + 1}px`,
                 background: `linear-gradient(180deg,
@@ -128,7 +128,7 @@ const GlowingGridBackground = () => {
 
             {/* Enhanced glow effect */}
             <motion.div
-              className="absolute w-px h-[150px]"
+              className="absolute h-[150px] w-px"
               style={{
                 left: `${index * 100 + 1}px`,
                 background: `linear-gradient(180deg,
@@ -157,7 +157,7 @@ const GlowingGridBackground = () => {
           <>
             <div className="absolute inset-0">
               <div
-                className="absolute top-0 left-0 w-1/2 h-1/2"
+                className="absolute left-0 top-0 size-1/2"
                 style={{
                   background:
                     "radial-gradient(circle at center, rgba(255,255,255,0.04) 0%, transparent 70%)",
@@ -166,7 +166,7 @@ const GlowingGridBackground = () => {
               />
 
               <div
-                className="absolute top-0 left-0 w-1/2 h-1/2"
+                className="absolute left-0 top-0 size-1/2"
                 style={{
                   background:
                     "radial-gradient(circle at center, rgba(255,255,255,0.03) 0%, transparent 60%)",
@@ -176,7 +176,7 @@ const GlowingGridBackground = () => {
             </div>
 
             <div
-              className="absolute top-0 left-0 w-1/2 h-1/2"
+              className="absolute left-0 top-0 size-1/2"
               style={{
                 background: `radial-gradient(circle at center, 
                   rgba(255,255,255,0.02) 0%, 
@@ -187,7 +187,7 @@ const GlowingGridBackground = () => {
             />
 
             <div
-              className="absolute top-0 left-0 w-1/2 h-1/2"
+              className="absolute left-0 top-0 size-1/2"
               style={{
                 background:
                   "radial-gradient(circle at center, rgba(255,255,255,0.015) 0%, transparent 40%)",

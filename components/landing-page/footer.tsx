@@ -68,11 +68,11 @@ const Footer: FC = () => {
       <div className="border-b border-[#2A2A2A] md:border-none">
         <button
           onClick={() => toggleSection(title.toLowerCase())}
-          className="w-full flex items-center justify-between py-4 md:py-0 md:cursor-default"
+          className="flex w-full items-center justify-between py-4 md:cursor-default md:py-0"
         >
-          <h4 className="text-sm font-semibold text-white uppercase">{title}</h4>
+          <h4 className="text-sm font-semibold uppercase text-white">{title}</h4>
           <ChevronDown 
-            className={`md:hidden w-5 h-5 text-gray-400 transition-transform duration-200 ${
+            className={`size-5 text-gray-400 transition-transform duration-200 md:hidden ${
               isOpen ? 'rotate-180' : ''
             }`}
           />
@@ -84,7 +84,7 @@ const Footer: FC = () => {
           {isContact ? (
             (items as ContactItem[]).map((item) => (
               <li key={item.text}>
-                <a href={item.href} className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors duration-200">
+                <a href={item.href} className="flex items-center gap-2 text-sm text-gray-400 transition-colors duration-200 hover:text-white">
                   <item.icon size={16} />
                   {item.text}
                 </a>
@@ -93,7 +93,7 @@ const Footer: FC = () => {
           ) : (
             (items as NavigationItem[]).map((item) => (
               <li key={item.name}>
-                <a href={item.href} className="text-sm text-gray-400 hover:text-white transition-colors duration-200">
+                <a href={item.href} className="text-sm text-gray-400 transition-colors duration-200 hover:text-white">
                   {item.name}
                 </a>
               </li>
@@ -105,20 +105,20 @@ const Footer: FC = () => {
   };
 
   return (
-    <footer className="bg-black/40 border-t border-[#2A2A2A]">
+    <footer className="border-t border-[#2A2A2A] bg-black/40">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="border-b border-[#2A2A2A] py-12 hidden md:block">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
+        <div className="hidden border-b border-[#2A2A2A] py-12 md:block">
+          <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
             <div className="max-w-xl">
-              <h3 className="text-lg font-semibold text-white mb-2">
+              <h3 className="mb-2 text-lg font-semibold text-white">
                 Subscribe to our newsletter
               </h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-sm text-gray-400">
                 Stay up to date with the latest news, announcements, and articles.
               </p>
             </div>
             <div className="w-full lg:w-auto">
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col gap-3 sm:flex-row">
                 {/* Uncomment and replace placeholder elements with actual inputs/buttons */}
               </div>
             </div>
@@ -126,24 +126,24 @@ const Footer: FC = () => {
         </div>
 
         <div className="py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-5">
             <div className="lg:col-span-2">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg"></div>
+              <div className="mb-6 flex items-center gap-2">
+                <div className="size-8 rounded-lg bg-blue-600"></div>
                 <span className="text-xl font-bold text-white">Resolva</span>
               </div>
-              <p className="text-gray-400 text-sm mb-6 max-w-md">
+              <p className="mb-6 max-w-md text-sm text-gray-400">
                 Building the future of software development. Our platform helps developers and teams ship better software, faster.
               </p>
               <div className="flex flex-col gap-4 md:gap-8">
               <div className="flex gap-4">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
+                <a href="#" className="text-gray-400 transition-colors duration-200 hover:text-white">
                   <Github size={20} />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
+                <a href="#" className="text-gray-400 transition-colors duration-200 hover:text-white">
                   <Twitter size={20} />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
+                <a href="#" className="text-gray-400 transition-colors duration-200 hover:text-white">
                   <Linkedin size={20} />
                 </a>
               </div>
@@ -158,7 +158,7 @@ const Footer: FC = () => {
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="w-2 h-2 bg-emerald-500 rounded-full"
+                className="size-2 rounded-full bg-emerald-500"
                 
               />
               <span>Status</span>
@@ -173,18 +173,18 @@ const Footer: FC = () => {
         </div>
 
         <div className="border-t border-[#2A2A2A] py-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="text-sm text-gray-400">
               © {new Date().getFullYear()} Resolva, Inc. All rights reserved.
             </div>
             <div className="flex gap-6">
-              <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors duration-200">
+              <a href="#" className="text-sm text-gray-400 transition-colors duration-200 hover:text-white">
                 Privacy Policy
               </a>
-              <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors duration-200">
+              <a href="#" className="text-sm text-gray-400 transition-colors duration-200 hover:text-white">
                 Terms of Service
               </a>
-              <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors duration-200">
+              <a href="#" className="text-sm text-gray-400 transition-colors duration-200 hover:text-white">
                 Cookies
               </a>
             </div>

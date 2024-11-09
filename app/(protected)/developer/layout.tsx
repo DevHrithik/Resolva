@@ -1,17 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import {
-  GitMerge,
-  Github,
-  Layout,
-  List,
-  Menu,
-  Search,
-  Star,
-  User2,
-  Users,
-  Wallet,
-} from "lucide-react";
+import { GitMerge, Github, Layout, List, Menu, Search, Star, User2, Wallet } from "lucide-react";
 import Link from "next/link";
 import { Bell, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -59,11 +48,7 @@ const NAVLIST = [
   },
 ];
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   const PATH = usePathname();
 
   const getHeaderTitle = () => {
@@ -73,15 +58,15 @@ export default function RootLayout({
 
   useEffect(() => {
     console.log(PATH);
-  }, []);
+  }, [PATH]);
 
   return (
     <div className="flex h-screen">
-      <div className="hidden border-r border-[#ffffff20] bg-black lg:block w-[15%]">
+      <div className="hidden w-[15%] border-r border-[#ffffff20] bg-black lg:block">
         <div className="flex h-full flex-col gap-2">
           <div className="flex h-[60px] items-center px-6">
             <Link className="flex items-center gap-2 font-semibold" href="#">
-              <Github className="h-6 w-6 text-white" />
+              <Github className="size-6 text-white" />
               <span>Resolva</span>
             </Link>
           </div>
@@ -92,10 +77,10 @@ export default function RootLayout({
                   key={index}
                   className={`${
                     item.href === PATH ? "text-white" : "text-zinc-400"
-                  } flex items-center gap-3 rounded-lg px-3 py-2 hover:text-white transition-all`}
+                  } flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-white`}
                   href={item.href}
                 >
-                  <item.icon className="h-4 w-4" />
+                  <item.icon className="size-4" />
                   {item.name}
                 </Link>
               ))}
@@ -104,30 +89,27 @@ export default function RootLayout({
           <div className="mt-auto p-4">Subscription section</div>
         </div>
       </div>
-      <div className="flex-1 h-screen flex flex-col">
-        <header className="flex h-14 lg:h-[60px] py-4 items-center gap-4 border-b border-[#ffffff20] bg-black px-6">
+      <div className="flex h-screen flex-1 flex-col">
+        <header className="flex h-14 items-center gap-4 border-b border-[#ffffff20] bg-black px-6 py-4 lg:h-[60px]">
           <Sheet>
             <SheetTrigger asChild>
               <Button
-                className="rounded-full hover:bg-zinc-800 border border-zinc-800 w-8 h-8 bg-black md:hidden flex"
+                className="flex size-8 rounded-full border border-zinc-800 bg-black hover:bg-zinc-800 md:hidden"
                 size="icon"
                 variant="ghost"
               >
-                <Menu className="h-4 w-4 text-white" />
+                <Menu className="size-4 text-white" />
                 <span className="sr-only">Mobile Menu</span>
               </Button>
             </SheetTrigger>
             <SheetContent
               side={"left"}
-              className="bg-black text-white border-r border-[#ffffff20] max-w-fit"
+              className="max-w-fit border-r border-[#ffffff20] bg-black text-white"
             >
               <div className="flex h-full flex-col gap-2">
-                <div className="flex h-[60px] items-center justify-center mr-[10%]">
-                  <Link
-                    className="flex items-center gap-2 font-semibold"
-                    href="/developer"
-                  >
-                    <Github className="h-6 w-6 text-white" />
+                <div className="mr-[10%] flex h-[60px] items-center justify-center">
+                  <Link className="flex items-center gap-2 font-semibold" href="/developer">
+                    <Github className="size-6 text-white" />
                     <span>Resolva</span>
                   </Link>
                 </div>
@@ -136,10 +118,10 @@ export default function RootLayout({
                     {NAVLIST.map((item, index) => (
                       <Link
                         key={index}
-                        className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 hover:text-white transition-all"
+                        className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-400 transition-all hover:text-white"
                         href={item.href}
                       >
-                        <item.icon className="h-4 w-4" />
+                        <item.icon className="size-4" />
                         {item.name}
                       </Link>
                     ))}
@@ -152,32 +134,32 @@ export default function RootLayout({
           <div className="w-full flex-1">
             <form>
               <div className="relative">
-                <h2 className="font-bold text-xl">{getHeaderTitle()}</h2>
+                <h2 className="text-xl font-bold">{getHeaderTitle()}</h2>
               </div>
             </form>
           </div>
           <Button
-            className="rounded-full hover:bg-zinc-800 border border-zinc-800 w-8 h-8 bg-black"
+            className="size-8 rounded-full border border-zinc-800 bg-black hover:bg-zinc-800"
             size="icon"
             variant="ghost"
           >
-            <Bell className="h-4 w-4 text-white" />
+            <Bell className="size-4 text-white" />
             <span className="sr-only">Toggle notifications</span>
           </Button>
           <Button
-            className="rounded-full border border-zinc-800 hover:bg-zinc-900 w-8 h-8 bg-black"
+            className="size-8 rounded-full border border-zinc-800 bg-black hover:bg-zinc-900"
             size="icon"
             variant="ghost"
           >
-            <Settings className="h-4 w-4 text-white" />
+            <Settings className="size-4 text-white" />
             <span className="sr-only">Toggle settings</span>
           </Button>
           <Button
-            className="rounded-full border border-zinc-800 hover:bg-zinc-900 bg-black"
+            className="rounded-full border border-zinc-800 bg-black hover:bg-zinc-900"
             variant="ghost"
             onClick={() => signOut({ callbackUrl: "/" })}
           >
-            <span className="text-white text-sm px-2">Sign out</span>
+            <span className="px-2 text-sm text-white">Sign out</span>
           </Button>
           <Separator orientation="vertical" className="h-6" />
         </header>

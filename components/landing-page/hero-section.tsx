@@ -29,13 +29,13 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-[40vh] md:min-h-[60vh] flex flex-col justify-center items-center py-16 md:py-24 lg:py-40"
+      className="flex min-h-[40vh] flex-col items-center justify-center py-16 md:min-h-[60vh] md:py-24 lg:py-40"
     >
-      <div className="container px-4 md:px-6 max-w-6xl">
+      <div className="container max-w-6xl px-4 md:px-6">
         <div className="flex flex-col gap-8 text-center">
           <h1
             ref={headingRef}
-            className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight"
+            className="text-4xl font-extrabold leading-tight tracking-tight md:text-5xl lg:text-6xl"
           >
             <span className="inline-block">Solve</span>{' '}
             <span className="inline-block">issues,</span>{' '}
@@ -44,12 +44,12 @@ export default function HeroSection() {
           </h1>
           <p
             ref={subheadingRef}
-            className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto"
+            className="mx-auto max-w-3xl text-xl text-muted-foreground md:text-2xl"
           >
             Tackle real-world problems and get rewarded for your innovative solutions. Join our community of problem solvers today.
           </p>
           <div ref={buttonRef} className="flex justify-center">
-          <Button size="lg" className="text-lg px-6 py-6 rounded-full bg-[#00E599] hover:bg-[#00E5BF]">
+          <Button size="lg" className="rounded-full bg-[#00E599] p-6 text-lg hover:bg-[#00E5BF]">
               Get Started
             </Button>
           </div>
